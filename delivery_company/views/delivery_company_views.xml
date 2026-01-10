@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_delivery_company_form" model="ir.ui.view">
+        <field name="name">delivery.company.form</field>
+        <field name="model">delivery.company</field>
+        <field name="arch" type="xml">
+            <form string="Delivery Company">
+                <header>
+                    <button name="action_test_connection" 
+                            string="Test Connection" 
+                            type="object" 
+                            class="btn-primary"
+                            icon="fa-plug"
+                            invisible="provider_type == 'other'"/>
+                    <button name="action_refresh_token" 
+                            string="Refresh Token" 
+                            type="object"
+                            class="btn-secondary"
+                            icon="fa-refresh"
+                            invisible="provider_type != 'barid'"/>
+                </header>
+
+                <sheet>
+                    <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" placeholder="e.g. Barid Al-Maghrib"/>
+                        </h1>
+                    </div>
+                    
+                    <group>
+                        <group string="Provider Configuration">
+                            <field name="provider_type" widget="radio" options="{'horizontal': true}"/>
+                            <field name="default_transport_nature"/>
+                            <field name="active" invisible="1"/>
+                        </group>
+                    </group>
+                    
+                    <notebook>
+                        <!-- Barid Al-Maghrib Tab -->
+                        <page string="Barid Al-Maghrib" name="barid_config"
+                              invisible="provider_type != 'barid'">
+                            <group>
+                                <group string="Tracking API">
+                                    <field name="code_contrat" placeholder="Your contract code"/>
+                                    <field name="secret_key" password="True" placeholder="Your secret key"/>
+                                </group>
+                                <group string="E-Commerce API">
+                                    <field name="ecom_password" password="True" placeholder="API password"/>
+                                </group>
+                            </group>
+                        </page>
+                        
+                        <!-- Other/Custom Provider Tab -->
+                        <page string="API Configuration" name="other_config"
+                              invisible="provider_type == 'barid'">
+                            <group>
+                                <group string="API Endpoints">
+                                    <field name="api_url" placeholder="https://api.example.com"/>
+                                    <field name="tracking_url" placeholder="https://api.example.com/track"/>
+                                </group>
+                                <group string="Authentication">
+                                    <field name="api_key" placeholder="Your API key"/>
+                                    <field name="username" placeholder="Username"/>
+                                    <field name="password" password="True" placeholder="Password"/>
+                                </group>
+                            </group>
+                        </page>
+                        
+                        <!-- Notes Tab -->
+                        <page string="Notes" name="notes">
+                            <field name="notes" placeholder="Additional notes about this delivery company configuration..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="view_delivery_company_list" model="ir.ui.view">
+        <field name="name">delivery.company.list</field>
+        <field name="model">delivery.company</field>
+        <field name="arch" type="xml">
+            <list string="Delivery Companies">
+                <field name="name"/>
+                <field name="provider_type"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+    
+    <!-- Search View -->
+    <record id="view_delivery_company_search" model="ir.ui.view">
+        <field name="name">delivery.company.search</field>
+        <field name="model">delivery.company</field>
+        <field name="arch" type="xml">
+            <search string="Delivery Companies">
+                <field name="name"/>
+                <field name="provider_type"/>
+                <filter string="Active" name="active" domain="[('active', '=', True)]"/>
+                <filter string="Archived" name="archived" domain="[('active', '=', False)]"/>
+                <separator/>
+                <filter string="Barid Al-Maghrib" name="barid" domain="[('provider_type', '=', 'barid')]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Provider" name="group_provider" context="{'group_by': 'provider_type'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_delivery_company" model="ir.actions.act_window">
+        <field name="name">Delivery Companies</field>
+        <field name="res_model">delivery.company</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_delivery_company_search"/>
+        <field name="context">{'search_default_active': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new delivery company
+            </p>
+            <p>
+                Configure your delivery service providers (Barid Al-Maghrib, etc.)
+                with their API credentials for automated tracking and shipment management.
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu directly under Sales (after Reporting) -->
+    <menuitem id="menu_delivery_company"
+              name="Delivery Companies"
+              parent="sale.sale_menu_root"
+              action="action_delivery_company"
+              sequence="55"/>
+</odoo>

@@ -1,0 +1,401 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* delivery_company
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-05 00:00+0000\n"
+"PO-Revision-Date: 2026-01-05 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: French\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: delivery_company
+#: model:ir.model,name:delivery_company.model_delivery_company
+msgid "Delivery Company"
+msgstr "Société de Livraison"
+
+#. module: delivery_company
+#: model:ir.actions.act_window,name:delivery_company.action_delivery_company
+#: model:ir.ui.menu,name:delivery_company.menu_delivery_company
+msgid "Delivery Companies"
+msgstr "Sociétés de Livraison"
+
+#. module: delivery_company
+#: model:ir.ui.menu,name:delivery_company.menu_delivery_config_category
+msgid "Delivery"
+msgstr "Livraison"
+
+#. module: delivery_company
+#: model:ir.model.fields,field_description:delivery_company.field_delivery_company__name
+msgid "Company Name"
+msgstr "Nom de la Société"
+
+#. module: delivery_company
+#: model:ir.model.fields,field_description:delivery_company.field_delivery_company__active
+msgid "Active"
+msgstr "Actif"
+
+#. module: delivery_company
+#: model:ir.model.fields,field_description:delivery_company.field_delivery_company__provider_type
+msgid "Provider"
+msgstr "Fournisseur"
+
+#. module: delivery_company
+#: model:ir.model.fields.selection,name:delivery_company.selection__delivery_company__provider_type__barid
+msgid "Barid Al-Maghrib (Amana)"
+msgstr "Barid Al-Maghrib (Amana)"
+
+#. module: delivery_company
+#: model:ir.model.fields.selection,name:delivery_company.selection__delivery_company__provider_type__other
+msgid "Other"
+msgstr "Autre"
+
+#. module: delivery_company
+#: model:ir.model.fields,field_description:delivery_company.field_delivery_company__code_contrat
+msgid "Code Contrat"
+msgstr "Code Contrat"
+
+#. module: delivery_company
+#: model:ir.model.fields,field_description:delivery_company.field_delivery_company__secret_key
+msgid "Secret Key"
+msgstr "Clé Secrète"
+
+#. module: delivery_company
+#: model:ir.model.fields,field_description:delivery_company.field_delivery_company__ecom_password
+msgid "E-Commerce Password"
+msgstr "Mot de passe E-Commerce"
+
+#. module: delivery_company
+#: model:ir.model.fields,field_description:delivery_company.field_delivery_company__ecom_token
+msgid "E-Commerce Token"
+msgstr "Token E-Commerce"
+
+#. module: delivery_company
+#: model:ir.model.fields,field_description:delivery_company.field_delivery_company__ecom_token_expiry
+msgid "Token Expiry"
+msgstr "Expiration du Token"
+
+#. module: delivery_company
+#: model:ir.model.fields,field_description:delivery_company.field_delivery_company__api_url
+msgid "Shipping API URL"
+msgstr "URL API d'Expédition"
+
+#. module: delivery_company
+#: model:ir.model.fields,field_description:delivery_company.field_delivery_company__tracking_url
+msgid "Tracking API URL"
+msgstr "URL API de Suivi"
+
+#. module: delivery_company
+#: model:ir.model.fields,field_description:delivery_company.field_delivery_company__username
+msgid "Username"
+msgstr "Nom d'utilisateur"
+
+#. module: delivery_company
+#: model:ir.model.fields,field_description:delivery_company.field_delivery_company__password
+msgid "Password"
+msgstr "Mot de passe"
+
+#. module: delivery_company
+#: model:ir.model.fields,field_description:delivery_company.field_delivery_company__api_key
+msgid "API Key"
+msgstr "Clé API"
+
+#. module: delivery_company
+#: model:ir.model.fields,field_description:delivery_company.field_delivery_company__notes
+msgid "Notes"
+msgstr "Notes"
+
+#. module: delivery_company
+#: model:ir.model.fields,field_description:delivery_company.field_res_partner__delivery_company_id
+msgid "Delivery Company"
+msgstr "Société de Livraison"
+
+#. module: delivery_company
+#: model_terms:ir.ui.view,arch_db:delivery_company.view_delivery_company_form
+msgid "Provider Configuration"
+msgstr "Configuration du Fournisseur"
+
+#. module: delivery_company
+#: model_terms:ir.ui.view,arch_db:delivery_company.view_delivery_company_form
+msgid "Barid Al-Maghrib"
+msgstr "Barid Al-Maghrib"
+
+#. module: delivery_company
+#: model_terms:ir.ui.view,arch_db:delivery_company.view_delivery_company_form
+msgid "Tracking API"
+msgstr "API de Suivi"
+
+#. module: delivery_company
+#: model_terms:ir.ui.view,arch_db:delivery_company.view_delivery_company_form
+msgid "E-Commerce API"
+msgstr "API E-Commerce"
+
+#. module: delivery_company
+#: model_terms:ir.ui.view,arch_db:delivery_company.view_delivery_company_form
+msgid "API Configuration"
+msgstr "Configuration API"
+
+#. module: delivery_company
+#: model_terms:ir.ui.view,arch_db:delivery_company.view_delivery_company_form
+msgid "API Endpoints"
+msgstr "Points d'accès API"
+
+#. module: delivery_company
+#: model_terms:ir.ui.view,arch_db:delivery_company.view_delivery_company_form
+msgid "Authentication"
+msgstr "Authentification"
+
+#. module: delivery_company
+#: model_terms:ir.ui.view,arch_db:delivery_company.view_delivery_company_form
+msgid "Test Connection"
+msgstr "Tester la Connexion"
+
+#. module: delivery_company
+#: model_terms:ir.ui.view,arch_db:delivery_company.view_delivery_company_form
+msgid "Refresh Token"
+msgstr "Actualiser le Token"
+
+#. module: delivery_company
+#: model_terms:ir.ui.view,arch_db:delivery_company.view_delivery_company_form
+msgid "Archived"
+msgstr "Archivé"
+
+#. module: delivery_company
+#: model_terms:ir.ui.view,arch_db:delivery_company.view_delivery_company_search
+msgid "Group By"
+msgstr "Grouper par"
+
+#. module: delivery_company
+#: code:addons/delivery_company/models/delivery_company.py:0
+#, python-format
+msgid "Connection Test"
+msgstr "Test de Connexion"
+
+#. module: delivery_company
+#: code:addons/delivery_company/models/delivery_company.py:0
+#, python-format
+msgid "Connection Test Failed"
+msgstr "Échec du Test de Connexion"
+
+#. module: delivery_company
+#: code:addons/delivery_company/models/delivery_company.py:0
+#, python-format
+msgid "Token Refreshed"
+msgstr "Token Actualisé"
+
+#. module: delivery_company
+#: code:addons/delivery_company/models/delivery_company.py:0
+#, python-format
+msgid "E-Commerce API token has been refreshed successfully."
+msgstr "Le token API E-Commerce a été actualisé avec succès."
+
+#. module: delivery_company
+#: code:addons/delivery_company/models/delivery_company.py:0
+#, python-format
+msgid "Token refresh is only available for Barid provider."
+msgstr "L'actualisation du token n'est disponible que pour le fournisseur Barid."
+
+#. module: delivery_company
+#: code:addons/delivery_company/models/delivery_company.py:0
+#, python-format
+msgid "Failed to refresh token: %(error)s"
+msgstr "Échec de l'actualisation du token : %(error)s"
+
+#. module: delivery_company
+#: code:addons/delivery_company/models/delivery_company.py:0
+#, python-format
+msgid "Provider '%(provider)s' is not yet implemented."
+msgstr "Le fournisseur '%(provider)s' n'est pas encore implémenté."
+
+#. module: delivery_company
+#: model_terms:ir.actions.act_window,help:delivery_company.action_delivery_company
+msgid "Create a new delivery company"
+msgstr "Créer une nouvelle société de livraison"
+
+#. module: delivery_company
+#: model_terms:ir.actions.act_window,help:delivery_company.action_delivery_company
+msgid "Configure your delivery service providers (Barid Al-Maghrib, etc.) with their API credentials for automated tracking and shipment management."
+msgstr "Configurez vos fournisseurs de services de livraison (Barid Al-Maghrib, etc.) avec leurs identifiants API pour le suivi automatisé et la gestion des expéditions."
+
+#. module: delivery_company
+#: model_terms:ir.ui.view,arch_db:delivery_company.view_delivery_company_form
+msgid "e.g. Barid Al-Maghrib"
+msgstr "ex. Barid Al-Maghrib"
+
+#. module: delivery_company
+#: model_terms:ir.ui.view,arch_db:delivery_company.view_delivery_company_form
+msgid "Your contract code"
+msgstr "Votre code contrat"
+
+#. module: delivery_company
+#: model_terms:ir.ui.view,arch_db:delivery_company.view_delivery_company_form
+msgid "Your secret key"
+msgstr "Votre clé secrète"
+
+#. module: delivery_company
+#: model_terms:ir.ui.view,arch_db:delivery_company.view_delivery_company_form
+msgid "API password"
+msgstr "Mot de passe API"
+
+#. module: delivery_company
+#: model_terms:ir.ui.view,arch_db:delivery_company.view_delivery_company_form
+msgid "https://api.example.com"
+msgstr "https://api.exemple.com"
+
+#. module: delivery_company
+#: model_terms:ir.ui.view,arch_db:delivery_company.view_delivery_company_form
+msgid "https://api.example.com/track"
+msgstr "https://api.exemple.com/track"
+
+#. module: delivery_company
+#: model_terms:ir.ui.view,arch_db:delivery_company.view_delivery_company_form
+msgid "Your API key"
+msgstr "Votre clé API"
+
+#. module: delivery_company
+#: model_terms:ir.ui.view,arch_db:delivery_company.view_delivery_company_form
+msgid "Additional notes about this delivery company configuration..."
+msgstr "Notes supplémentaires sur la configuration de cette société de livraison..."
+
+#. module: delivery_company
+#: model:ir.model,name:delivery_company.model_sale_order
+msgid "Sales Order"
+msgstr "Bon de Commande"
+
+#. module: delivery_company
+#: model:ir.model.fields,field_description:delivery_company.field_sale_order__delivery_company_id
+msgid "Delivery Company"
+msgstr "Société de Livraison"
+
+#. module: delivery_company
+#: model:ir.model,name:delivery_company.model_stock_picking
+msgid "Delivery Order"
+msgstr "Ordre de Livraison"
+
+#. module: delivery_company
+#: model:ir.model.fields,field_description:delivery_company.field_stock_picking__delivery_company_id
+msgid "Delivery Company"
+msgstr "Société de Livraison"
+
+#. module: delivery_company
+#: model:ir.model,name:delivery_company.model_account_move
+msgid "Invoice"
+msgstr "Facture"
+
+#. module: delivery_company
+#: model:ir.model.fields,field_description:delivery_company.field_account_move__delivery_company_id
+msgid "Delivery Company"
+msgstr "Société de Livraison"
+
+#. module: delivery_company
+#: model_terms:ir.ui.view,arch_db:delivery_company.report_saleorder_delivery_company
+#: model_terms:ir.ui.view,arch_db:delivery_company.report_delivery_slip_delivery_company
+#: model_terms:ir.ui.view,arch_db:delivery_company.report_invoice_delivery_company
+msgid "Delivery Company:"
+msgstr "Société de Livraison :"
+
+#. module: delivery_company
+#: model:ir.model.fields,field_description:delivery_company.field_sale_order__nbr_colis
+#: model:ir.model.fields,field_description:delivery_company.field_stock_picking__nbr_colis
+msgid "Number of Packages"
+msgstr "Nombre de Colis"
+
+#. module: delivery_company
+#: model:ir.model.fields,field_description:delivery_company.field_sale_order__shipping_payment_method
+#: model:ir.model.fields,field_description:delivery_company.field_stock_picking__shipping_payment_method
+#: model:ir.model.fields,field_description:delivery_company.field_account_move__shipping_payment_method
+msgid "Payment Method"
+msgstr "Mode de Paiement"
+
+#. module: delivery_company
+#: model:ir.model.fields,field_description:delivery_company.field_sale_order__transport_nature
+#: model:ir.model.fields,field_description:delivery_company.field_stock_picking__transport_nature
+msgid "Transport Nature"
+msgstr "Nature du Transport"
+
+#. module: delivery_company
+#: model:ir.model.fields.selection,name:delivery_company.selection__sale_order__shipping_payment_method__bank_transfer
+#: model:ir.model.fields.selection,name:delivery_company.selection__stock_picking__shipping_payment_method__bank_transfer
+#: model:ir.model.fields.selection,name:delivery_company.selection__account_move__shipping_payment_method__bank_transfer
+msgid "Bank Transfer"
+msgstr "Virement Bancaire"
+
+#. module: delivery_company
+#: model:ir.model.fields.selection,name:delivery_company.selection__sale_order__shipping_payment_method__cash
+#: model:ir.model.fields.selection,name:delivery_company.selection__stock_picking__shipping_payment_method__cash
+#: model:ir.model.fields.selection,name:delivery_company.selection__account_move__shipping_payment_method__cash
+msgid "Cash (Espèce)"
+msgstr "Espèce"
+
+#. module: delivery_company
+#: model:ir.model.fields.selection,name:delivery_company.selection__sale_order__shipping_payment_method__cheque
+#: model:ir.model.fields.selection,name:delivery_company.selection__stock_picking__shipping_payment_method__cheque
+#: model:ir.model.fields.selection,name:delivery_company.selection__account_move__shipping_payment_method__cheque
+msgid "Cheque"
+msgstr "Chèque"
+
+#. module: delivery_company
+#: model:ir.model.fields.selection,name:delivery_company.selection__sale_order__shipping_payment_method__effet
+#: model:ir.model.fields.selection,name:delivery_company.selection__stock_picking__shipping_payment_method__effet
+#: model:ir.model.fields.selection,name:delivery_company.selection__account_move__shipping_payment_method__effet
+msgid "Effet"
+msgstr "Effet"
+
+#. module: delivery_company
+#: model:ir.model.fields.selection,name:delivery_company.selection__sale_order__transport_nature__standard
+#: model:ir.model.fields.selection,name:delivery_company.selection__stock_picking__transport_nature__standard
+msgid "Standard"
+msgstr "Standard"
+
+#. module: delivery_company
+#: model:ir.model.fields.selection,name:delivery_company.selection__sale_order__transport_nature__express
+#: model:ir.model.fields.selection,name:delivery_company.selection__stock_picking__transport_nature__express
+msgid "Express"
+msgstr "Express"
+
+#. module: delivery_company
+#: model:ir.model.fields.selection,name:delivery_company.selection__sale_order__transport_nature__fragile
+#: model:ir.model.fields.selection,name:delivery_company.selection__stock_picking__transport_nature__fragile
+msgid "Fragile"
+msgstr "Fragile"
+
+#. module: delivery_company
+#: model:ir.model.fields.selection,name:delivery_company.selection__sale_order__transport_nature__domicile
+#: model:ir.model.fields.selection,name:delivery_company.selection__stock_picking__transport_nature__domicile
+msgid "Home Delivery (À Domicile)"
+msgstr "À Domicile"
+
+#. module: delivery_company
+#: model_terms:ir.ui.view,arch_db:delivery_company.report_saleorder_delivery_company
+#: model_terms:ir.ui.view,arch_db:delivery_company.report_delivery_slip_delivery_company
+msgid "Packages:"
+msgstr "Colis :"
+
+#. module: delivery_company
+#: model_terms:ir.ui.view,arch_db:delivery_company.report_saleorder_delivery_company
+#: model_terms:ir.ui.view,arch_db:delivery_company.report_delivery_slip_delivery_company
+#: model_terms:ir.ui.view,arch_db:delivery_company.report_invoice_delivery_company
+msgid "Payment:"
+msgstr "Paiement :"
+
+#. module: delivery_company
+#: model_terms:ir.ui.view,arch_db:delivery_company.report_saleorder_delivery_company
+#: model_terms:ir.ui.view,arch_db:delivery_company.report_delivery_slip_delivery_company
+msgid "Transport:"
+msgstr "Transport :"
+
+#. module: delivery_company
+#: model_terms:ir.ui.view,arch_db:delivery_company.report_invoice_delivery_company
+msgid "Shipping Payment:"
+msgstr "Paiement Livraison :"
+
+#. module: delivery_company
+msgid "package(s)"
+msgstr "colis"

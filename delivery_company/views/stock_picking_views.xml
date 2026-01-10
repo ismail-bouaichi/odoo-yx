@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Stock Picking Form View -->
+    <record id="view_stock_picking_form_inherit_delivery_company" model="ir.ui.view">
+        <field name="name">stock.picking.form.inherit.delivery.company</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='origin']" position="after">
+                <field name="delivery_company_id"
+                       readonly="picking_type_code != 'outgoing'"
+                       options="{'no_create': True, 'no_open': True}"
+                       invisible="picking_type_code == 'incoming'"/>
+                <field name="nbr_colis" invisible="picking_type_code == 'incoming' or not delivery_company_id"
+                       string="Packages"/>
+                <field name="shipping_payment_method"
+                       readonly="picking_type_code != 'outgoing'" 
+                       invisible="picking_type_code == 'incoming' or not delivery_company_id"/>
+                <field name="transport_nature" readonly="1"
+                       invisible="picking_type_code == 'incoming' or not delivery_company_id"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Stock Picking Tree View -->
+    <record id="view_stock_picking_tree_inherit_delivery_company" model="ir.ui.view">
+        <field name="name">stock.picking.tree.inherit.delivery.company</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.vpicktree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="delivery_company_id" optional="hide"
+                       column_invisible="context.get('default_picking_type_code') != 'outgoing'"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
