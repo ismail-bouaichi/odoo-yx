@@ -17,7 +17,7 @@ class ResPartner(models.Model):
     def write(self, vals):
         """Auto-assign default delivery company when customer_rank increases."""
         res = super().write(vals)
-        # If becoming a customer and no delivery company set
+         
         if vals.get('customer_rank', 0) > 0:
             default_company = self.env['delivery.company'].search(
                 [('provider_type', '=', 'barid'), ('active', '=', True)],

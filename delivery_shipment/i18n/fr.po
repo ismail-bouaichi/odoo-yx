@@ -1,0 +1,757 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* delivery_shipment
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0-20251223\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-12 09:22+0000\n"
+"PO-Revision-Date: 2026-01-12 09:22+0000\n"
+"Last-Translator: \n"
+"Language-Team: French\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: delivery_shipment
+#: model_terms:ir.ui.view,arch_db:delivery_shipment.view_delivery_shipment_form
+msgid "<span>Delivery Order</span>"
+msgstr "<span>Bon de Livraison</span>"
+
+#. module: delivery_shipment
+#: model_terms:ir.ui.view,arch_db:delivery_shipment.view_stock_picking_form_shipment
+msgid "<span>Shipment</span>"
+msgstr "<span>Expédition</span>"
+
+#. module: delivery_shipment
+#: model_terms:ir.ui.view,arch_db:delivery_shipment.view_delivery_shipment_export_wizard_form
+msgid "<strong>Export completed successfully!</strong>"
+msgstr "<strong>Export terminé avec succès!</strong>"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__message_needaction
+msgid "Action Needed"
+msgstr "Action requise"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__activity_ids
+msgid "Activities"
+msgstr "Activités"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Décoration d'exception d'activité"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__activity_state
+msgid "Activity State"
+msgstr "État de l'activité"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Icône du type d'activité"
+
+#. module: delivery_shipment
+#: model_terms:ir.ui.view,arch_db:delivery_shipment.view_delivery_shipment_form
+msgid "Add notes..."
+msgstr "Ajouter des notes..."
+
+#. module: delivery_shipment
+#: model:ir.ui.menu,name:delivery_shipment.menu_delivery_shipment
+msgid "All Shipments"
+msgstr "Toutes les Expéditions"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__message_attachment_count
+msgid "Attachment Count"
+msgstr "Nombre de pièces jointes"
+
+#. module: delivery_shipment
+#: model:ir.model.fields.selection,name:delivery_shipment.selection__delivery_shipment__shipping_payment_method__bank_transfer
+msgid "Bank Transfer"
+msgstr "Virement Bancaire"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,help:delivery_shipment.field_delivery_shipment__gab
+msgid "Barcode number (e.g., LI000006399MA)"
+msgstr "Numéro de code-barres (ex: LI000006399MA)"
+
+#. module: delivery_shipment
+#: model_terms:ir.ui.view,arch_db:delivery_shipment.view_delivery_shipment_form
+msgid "Barcodes"
+msgstr "Codes-barres"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__cab1
+msgid "CAB1"
+msgstr "CAB1"
+
+#. module: delivery_shipment
+#: model_terms:ir.ui.view,arch_db:delivery_shipment.view_delivery_shipment_form
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: delivery_shipment
+#: model:ir.model.fields.selection,name:delivery_shipment.selection__delivery_shipment__state__cancelled
+msgid "Cancelled"
+msgstr "Annulé"
+
+#. module: delivery_shipment
+#: model:ir.model.fields.selection,name:delivery_shipment.selection__delivery_shipment__shipping_payment_method__cash
+msgid "Cash (Espèce)"
+msgstr "Espèce"
+
+#. module: delivery_shipment
+#: model:ir.model.fields.selection,name:delivery_shipment.selection__delivery_shipment__shipping_payment_method__cheque
+msgid "Cheque"
+msgstr "Chèque"
+
+#. module: delivery_shipment
+#: model_terms:ir.ui.view,arch_db:delivery_shipment.view_delivery_shipment_export_wizard_form
+msgid "Close"
+msgstr "Fermer"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,help:delivery_shipment.field_delivery_shipment__cab1
+msgid "Computed as *GAB*"
+msgstr "Calculé comme *GAB*"
+
+#. module: delivery_shipment
+#: model_terms:ir.ui.view,arch_db:delivery_shipment.view_delivery_shipment_form
+msgid "Confirm"
+msgstr "Confirmer"
+
+#. module: delivery_shipment
+#: model:ir.model.fields.selection,name:delivery_shipment.selection__delivery_shipment__state__confirmed
+#: model_terms:ir.ui.view,arch_db:delivery_shipment.view_delivery_shipment_search
+msgid "Confirmed"
+msgstr "Confirmé"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__create_uid
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment_export_wizard__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__create_date
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment_export_wizard__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__partner_id
+#: model_terms:ir.ui.view,arch_db:delivery_shipment.view_delivery_shipment_search
+msgid "Customer"
+msgstr "Client"
+
+#. module: delivery_shipment
+#: model_terms:ir.ui.view,arch_db:delivery_shipment.view_delivery_shipment_form
+msgid "Dates"
+msgstr "Dates"
+
+#. module: delivery_shipment
+#: model:ir.model.fields.selection,name:delivery_shipment.selection__delivery_shipment__state__delivered
+#: model_terms:ir.ui.view,arch_db:delivery_shipment.view_delivery_shipment_form
+#: model_terms:ir.ui.view,arch_db:delivery_shipment.view_delivery_shipment_search
+msgid "Delivered"
+msgstr "Livré"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__delivery_company_id
+#: model_terms:ir.ui.view,arch_db:delivery_shipment.view_delivery_shipment_search
+msgid "Delivery Company"
+msgstr "Société de Livraison"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__delivery_date
+msgid "Delivery Date"
+msgstr "Date de Livraison"
+
+#. module: delivery_shipment
+#. odoo-python
+#: code:addons/delivery_shipment/models/delivery_shipment.py:0
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__picking_id
+msgid "Delivery Order"
+msgstr "Bon de Livraison"
+
+#. module: delivery_shipment
+#: model:ir.model,name:delivery_shipment.model_delivery_shipment
+msgid "Delivery Shipment"
+msgstr "Expédition de Livraison"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__display_name
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment_export_wizard__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: delivery_shipment
+#: model:ir.model.fields.selection,name:delivery_shipment.selection__delivery_shipment_export_wizard__state__done
+msgid "Done"
+msgstr "Terminé"
+
+#. module: delivery_shipment
+#: model:ir.model.fields.selection,name:delivery_shipment.selection__delivery_shipment__state__draft
+#: model:ir.model.fields.selection,name:delivery_shipment.selection__delivery_shipment_export_wizard__state__draft
+#: model_terms:ir.ui.view,arch_db:delivery_shipment.view_delivery_shipment_search
+msgid "Draft"
+msgstr "Brouillon"
+
+#. module: delivery_shipment
+#: model:ir.model.fields.selection,name:delivery_shipment.selection__delivery_shipment__shipping_payment_method__effet
+msgid "Effet"
+msgstr "Effet"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment_export_wizard__excel_file
+msgid "Excel File"
+msgstr "Fichier Excel"
+
+#. module: delivery_shipment
+#: model_terms:ir.ui.view,arch_db:delivery_shipment.view_delivery_shipment_export_wizard_form
+msgid "Export"
+msgstr "Exporter"
+
+#. module: delivery_shipment
+#: model:ir.model,name:delivery_shipment.model_delivery_shipment_export_wizard
+msgid "Export Shipments to Excel for Barid"
+msgstr "Exporter les Expéditions vers Excel pour Barid"
+
+#. module: delivery_shipment
+#: model_terms:ir.ui.view,arch_db:delivery_shipment.view_delivery_shipment_export_wizard_form
+msgid ""
+"Export selected shipments to Excel format for Barid (Amana).\n"
+"                        The export will include GAB and CAB1 as barcodes."
+msgstr ""
+"Exporter les expéditions sélectionnées vers le format Excel pour Barid (Amana).\n"
+"                        L'export inclura GAB et CAB1 comme codes-barres."
+
+#. module: delivery_shipment
+#: model:ir.actions.act_window,name:delivery_shipment.action_export_shipments_barid
+#: model_terms:ir.ui.view,arch_db:delivery_shipment.view_delivery_shipment_export_wizard_form
+msgid "Export to Barid Excel"
+msgstr "Exporter vers Excel Barid"
+
+#. module: delivery_shipment
+#: model:ir.model.fields.selection,name:delivery_shipment.selection__delivery_shipment__transport_nature__express
+msgid "Express"
+msgstr "Express"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment_export_wizard__filename
+msgid "Filename"
+msgstr "Nom du fichier"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__message_follower_ids
+msgid "Followers"
+msgstr "Abonnés"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Abonnés (Partenaires)"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,help:delivery_shipment.field_delivery_shipment__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Icône Font Awesome ex: fa-tasks"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__gab
+msgid "GAB"
+msgstr "GAB"
+
+#. module: delivery_shipment
+#. odoo-python
+#: code:addons/delivery_shipment/models/delivery_shipment.py:0
+msgid "GAB barcode already exists. Clear it first to generate a new one."
+msgstr "Le code-barres GAB existe déjà. Effacez-le d'abord pour en générer un nouveau."
+
+#. module: delivery_shipment
+#: model_terms:ir.ui.view,arch_db:delivery_shipment.view_delivery_shipment_form
+msgid "Generate"
+msgstr "Générer"
+
+#. module: delivery_shipment
+#: model_terms:ir.ui.view,arch_db:delivery_shipment.view_delivery_shipment_search
+msgid "Group By"
+msgstr "Grouper Par"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__has_message
+msgid "Has Message"
+msgstr "A un message"
+
+#. module: delivery_shipment
+#: model:ir.model.fields.selection,name:delivery_shipment.selection__delivery_shipment__transport_nature__domicile
+msgid "Home Delivery (À Domicile)"
+msgstr "À Domicile"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__id
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment_export_wizard__id
+msgid "ID"
+msgstr "ID"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__activity_exception_icon
+msgid "Icon"
+msgstr "Icône"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,help:delivery_shipment.field_delivery_shipment__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Icône pour indiquer une activité exceptionnelle."
+
+#. module: delivery_shipment
+#: model:ir.model.fields,help:delivery_shipment.field_delivery_shipment__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Si coché, de nouveaux messages requièrent votre attention."
+
+#. module: delivery_shipment
+#: model:ir.model.fields,help:delivery_shipment.field_delivery_shipment__message_has_error
+#: model:ir.model.fields,help:delivery_shipment.field_delivery_shipment__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si coché, certains messages ont une erreur de livraison."
+
+#. module: delivery_shipment
+#: model:ir.model.fields.selection,name:delivery_shipment.selection__delivery_shipment__state__in_transit
+#: model_terms:ir.ui.view,arch_db:delivery_shipment.view_delivery_shipment_form
+#: model_terms:ir.ui.view,arch_db:delivery_shipment.view_delivery_shipment_search
+msgid "In Transit"
+msgstr "En Transit"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__is_barid
+msgid "Is Barid"
+msgstr "Est Barid"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__message_is_follower
+msgid "Is Follower"
+msgstr "Est Abonné"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__write_uid
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment_export_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__write_date
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment_export_wizard__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__ms_destinataire
+msgid "MS Destinataire"
+msgstr "MS Destinataire"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__message_has_error
+msgid "Message Delivery error"
+msgstr "Erreur de livraison du message"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__message_ids
+msgid "Messages"
+msgstr "Messages"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Échéance de mon activité"
+
+#. module: delivery_shipment
+#. odoo-python
+#: code:addons/delivery_shipment/models/delivery_shipment.py:0
+msgid "New"
+msgstr "Nouveau"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr "Prochain événement du calendrier d'activité"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Échéance de la prochaine activité"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__activity_summary
+msgid "Next Activity Summary"
+msgstr "Résumé de la prochaine activité"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__activity_type_id
+msgid "Next Activity Type"
+msgstr "Type de la prochaine activité"
+
+#. module: delivery_shipment
+#: model_terms:ir.actions.act_window,help:delivery_shipment.action_delivery_shipment
+msgid "No shipments found"
+msgstr "Aucune expédition trouvée"
+
+#. module: delivery_shipment
+#. odoo-python
+#: code:addons/delivery_shipment/wizard/export_wizard.py:0
+msgid "No shipments selected for export."
+msgstr "Aucune expédition sélectionnée pour l'export."
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__notes
+#: model_terms:ir.ui.view,arch_db:delivery_shipment.view_delivery_shipment_form
+msgid "Notes"
+msgstr "Notes"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Nombre d'actions"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__nbr_colis
+msgid "Number of Packages"
+msgstr "Nombre de Colis"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__message_has_error_counter
+msgid "Number of errors"
+msgstr "Nombre d'erreurs"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,help:delivery_shipment.field_delivery_shipment__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Nombre de messages nécessitant une action"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,help:delivery_shipment.field_delivery_shipment__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Nombre de messages avec erreur de livraison"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__shipping_payment_method
+msgid "Payment Method"
+msgstr "Mode de Paiement"
+
+#. module: delivery_shipment
+#. odoo-python
+#: code:addons/delivery_shipment/models/delivery_shipment.py:0
+msgid "Please generate or enter a GAB barcode before confirming."
+msgstr "Veuillez générer ou saisir un code-barres GAB avant de confirmer."
+
+#. module: delivery_shipment
+#. odoo-python
+#: code:addons/delivery_shipment/wizard/export_wizard.py:0
+msgid "Please install openpyxl library: pip install openpyxl"
+msgstr "Veuillez installer la bibliothèque openpyxl: pip install openpyxl"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__rating_ids
+msgid "Ratings"
+msgstr "Évaluations"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,help:delivery_shipment.field_delivery_shipment__ms_destinataire
+msgid "Recipient barcode"
+msgstr "Code-barres du destinataire"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__reference
+#: model_terms:ir.ui.view,arch_db:delivery_shipment.view_delivery_shipment_form
+msgid "Reference"
+msgstr "Référence"
+
+#. module: delivery_shipment
+#: model_terms:ir.ui.view,arch_db:delivery_shipment.view_delivery_shipment_form
+msgid "Reset to Draft"
+msgstr "Remettre en Brouillon"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__activity_user_id
+msgid "Responsible User"
+msgstr "Utilisateur responsable"
+
+#. module: delivery_shipment
+#: model:ir.model.fields.selection,name:delivery_shipment.selection__delivery_shipment__state__returned
+#: model_terms:ir.ui.view,arch_db:delivery_shipment.view_delivery_shipment_form
+#: model_terms:ir.ui.view,arch_db:delivery_shipment.view_delivery_shipment_search
+msgid "Returned"
+msgstr "Retourné"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Erreur de livraison SMS"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__sale_order_id
+msgid "Sale Order"
+msgstr "Commande de Vente"
+
+#. module: delivery_shipment
+#: model_terms:ir.ui.view,arch_db:delivery_shipment.view_delivery_shipment_search
+msgid "Search Shipments"
+msgstr "Rechercher des Expéditions"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_stock_picking__shipment_id
+#: model_terms:ir.ui.view,arch_db:delivery_shipment.view_delivery_shipment_form
+msgid "Shipment"
+msgstr "Expédition"
+
+#. module: delivery_shipment
+#: model_terms:ir.ui.view,arch_db:delivery_shipment.view_delivery_shipment_form
+msgid "Shipment Info"
+msgstr "Info Expédition"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__name
+msgid "Shipment Reference"
+msgstr "Référence d'Expédition"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,help:delivery_shipment.field_delivery_shipment__reference
+msgid "Shipment reference number for non-Barid companies"
+msgstr "Numéro de référence d'expédition pour les sociétés non-Barid"
+
+#. module: delivery_shipment
+#: model:ir.actions.act_window,name:delivery_shipment.action_delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment_export_wizard__shipment_ids
+#: model:ir.ui.menu,name:delivery_shipment.menu_delivery_shipment_root
+#: model_terms:ir.ui.view,arch_db:delivery_shipment.view_delivery_shipment_tree
+msgid "Shipments"
+msgstr "Expéditions"
+
+#. module: delivery_shipment
+#: model_terms:ir.actions.act_window,help:delivery_shipment.action_delivery_shipment
+msgid ""
+"Shipments are automatically created when delivery orders are validated."
+msgstr ""
+"Les expéditions sont créées automatiquement lorsque les bons de livraison sont validés."
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__shipping_date
+#: model_terms:ir.ui.view,arch_db:delivery_shipment.view_delivery_shipment_search
+msgid "Shipping Date"
+msgstr "Date d'Expédition"
+
+#. module: delivery_shipment
+#: model_terms:ir.ui.view,arch_db:delivery_shipment.view_delivery_shipment_form
+msgid "Shipping Details"
+msgstr "Détails d'Expédition"
+
+#. module: delivery_shipment
+#: model:ir.model.fields.selection,name:delivery_shipment.selection__delivery_shipment__transport_nature__standard
+msgid "Standard"
+msgstr "Standard"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment_export_wizard__state
+msgid "State"
+msgstr "État"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__state
+#: model_terms:ir.ui.view,arch_db:delivery_shipment.view_delivery_shipment_search
+msgid "Status"
+msgstr "Statut"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,help:delivery_shipment.field_delivery_shipment__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Statut basé sur les activités\n"
+"En retard: La date d'échéance est dépassée\n"
+"Aujourd'hui: La date d'activité est aujourd'hui\n"
+"Planifié: Activités futures."
+
+#. module: delivery_shipment
+#. odoo-python
+#: code:addons/delivery_shipment/wizard/export_wizard.py:0
+msgid ""
+"The following shipments are missing GAB barcodes:\n"
+"%s\n"
+"\n"
+"Please generate barcodes first."
+msgstr ""
+"Les expéditions suivantes n'ont pas de codes-barres GAB:\n"
+"%s\n"
+"\n"
+"Veuillez d'abord générer les codes-barres."
+
+#. module: delivery_shipment
+#: model_terms:ir.ui.view,arch_db:delivery_shipment.view_delivery_shipment_search
+msgid "Today"
+msgstr "Aujourd'hui"
+
+#. module: delivery_shipment
+#: model:ir.model,name:delivery_shipment.model_stock_picking
+msgid "Transfer"
+msgstr "Transfert"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__transport_nature
+msgid "Transport Nature"
+msgstr "Nature de Transport"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,help:delivery_shipment.field_delivery_shipment__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Type d'activité exceptionnelle enregistrée."
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__website_message_ids
+msgid "Website Messages"
+msgstr "Messages du site web"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,help:delivery_shipment.field_delivery_shipment__website_message_ids
+msgid "Website communication history"
+msgstr "Historique des communications du site web"
+
+#. module: delivery_shipment
+#: model_terms:ir.ui.view,arch_db:delivery_shipment.view_delivery_shipment_form
+msgid "Generate Barcodes"
+msgstr "Générer les codes-barres"
+
+#. module: delivery_shipment
+#: model_terms:ir.ui.view,arch_db:delivery_shipment.view_delivery_shipment_form
+msgid "View All"
+msgstr "Voir tout"
+
+#. module: delivery_shipment
+#: model_terms:ir.ui.view,arch_db:delivery_shipment.view_delivery_shipment_form
+msgid "Clear"
+msgstr "Effacer"
+
+#. module: delivery_shipment
+#: model_terms:ir.ui.view,arch_db:delivery_shipment.view_delivery_shipment_form
+msgid "Are you sure you want to delete all barcodes?"
+msgstr "Êtes-vous sûr de vouloir supprimer tous les codes-barres?"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__package_count
+msgid "Package Count"
+msgstr "Nombre de colis"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__gab_range
+msgid "GAB Range"
+msgstr "Plage GAB"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__reference_from
+msgid "Reference From"
+msgstr "Référence de"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__reference_to
+msgid "Reference To"
+msgstr "Référence à"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__reference_display
+msgid "Reference Range"
+msgstr "Plage de référence"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__has_multiple_packages
+msgid "Has Multiple Packages"
+msgstr "A plusieurs colis"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,help:delivery_shipment.field_delivery_shipment__reference_from
+msgid "Starting reference number for multiple packages"
+msgstr "Numéro de référence de départ pour plusieurs colis"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,help:delivery_shipment.field_delivery_shipment__reference_to
+msgid "Ending reference number for multiple packages"
+msgstr "Numéro de référence de fin pour plusieurs colis"
+
+#. module: delivery_shipment
+#: model_terms:ir.ui.view,arch_db:delivery_shipment.view_delivery_shipment_form
+msgid "From"
+msgstr "De"
+
+#. module: delivery_shipment
+#: model_terms:ir.ui.view,arch_db:delivery_shipment.view_delivery_shipment_form
+msgid "To"
+msgstr "À"
+
+#. module: delivery_shipment
+#: model_terms:ir.ui.view,arch_db:delivery_shipment.view_delivery_shipment_form
+msgid "Packages:"
+msgstr "Colis:"
+
+#. module: delivery_shipment
+#: model:ir.model,name:delivery_shipment.model_delivery_shipment_package
+msgid "Shipment Package"
+msgstr "Colis d'expédition"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment_package__gab
+msgid "GAB"
+msgstr "GAB"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment_package__sequence
+msgid "Sequence"
+msgstr "Séquence"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment_package__shipment_id
+msgid "Shipment"
+msgstr "Expédition"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment_package__name
+msgid "Package Reference"
+msgstr "Référence du colis"
+
+#. module: delivery_shipment
+#. odoo-python
+#: code:addons/delivery_shipment/models/delivery_shipment.py:0
+msgid "Barcodes already exist. Clear them first to generate new ones."
+msgstr "Les codes-barres existent déjà. Effacez-les d'abord pour en générer de nouveaux."
+
+#. module: delivery_shipment
+#. odoo-python
+#: code:addons/delivery_shipment/models/delivery_shipment.py:0
+msgid "Please generate barcodes before confirming."
+msgstr "Veuillez générer les codes-barres avant de confirmer."
+
+#. module: delivery_shipment
+#. odoo-python
+#: code:addons/delivery_shipment/models/delivery_shipment.py:0
+msgid "Packages - %s"
+msgstr "Colis - %s"
+
+#. module: delivery_shipment
+#: model_terms:ir.ui.view,arch_db:delivery_shipment.view_stock_picking_form_shipment
+msgid "Create Shipment"
+msgstr "Créer une expédition"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_stock_picking__can_create_shipment
+msgid "Can Create Shipment"
+msgstr "Peut créer une expédition"
+
+#. module: delivery_shipment
+#: model_terms:ir.actions.act_window,help:delivery_shipment.action_delivery_shipment
+msgid "Create shipments from delivery orders using the \"Create Shipment\" button."
+msgstr "Créez des expéditions à partir des bons de livraison en utilisant le bouton \"Créer une expédition\"."

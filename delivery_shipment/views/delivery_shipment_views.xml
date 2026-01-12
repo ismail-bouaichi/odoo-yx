@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Shipment Form View -->
+    <record id="view_delivery_shipment_form" model="ir.ui.view">
+        <field name="name">delivery.shipment.form</field>
+        <field name="model">delivery.shipment</field>
+        <field name="arch" type="xml">
+            <form string="Shipment">
+                <header>
+                    <button name="action_confirm" type="object" string="Confirm"
+                            class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_in_transit" type="object" string="In Transit"
+                            class="btn-primary" invisible="state != 'confirmed'"/>
+                    <button name="action_deliver" type="object" string="Delivered"
+                            class="btn-primary" invisible="state != 'in_transit'"/>
+                    <button name="action_return" type="object" string="Returned"
+                            class="btn-warning" invisible="state not in ('confirmed', 'in_transit')"/>
+                    <button name="action_cancel" type="object" string="Cancel"
+                            invisible="state in ('delivered', 'cancelled')"/>
+                    <button name="action_draft" type="object" string="Reset to Draft"
+                            invisible="state not in ('cancelled', 'returned')"/>
+                    <field name="state" widget="statusbar" 
+                           statusbar_visible="draft,confirmed,in_transit,delivered"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_open_picking" type="object"
+                                class="oe_stat_button" icon="fa-truck">
+                            <span>Delivery Order</span>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Shipment Info">
+                            <field name="picking_id" readonly="state != 'draft'"/>
+                            <field name="sale_order_id"/>
+                            <field name="partner_id"/>
+                            <field name="delivery_company_id" 
+                                   options="{'no_create': True, 'no_open': True}"/>
+                        </group>
+                        <group string="Shipping Details">
+                            <field name="nbr_colis"/>
+                            <field name="shipping_payment_method"/>
+                            <field name="transport_nature"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="is_barid" invisible="1"/>
+                        <!-- Barcodes for Barid (Amana) -->
+                        <group string="Barcodes" invisible="not is_barid">
+                            <!-- Summary display -->
+                            <div class="d-flex align-items-center" invisible="not package_ids">
+                                <span class="fw-bold me-2">Packages:</span>
+                                <field name="package_count" class="me-1"/>
+                                <span class="text-muted">|</span>
+                                <field name="gab_range" class="ms-1 text-primary"/>
+                            </div>
+                            <!-- Action buttons -->
+                            <div class="d-flex align-items-center mt-2">
+                                <button name="action_generate_barcode" type="object"
+                                        string="Generate Barcodes" class="btn-primary"
+                                        invisible="package_ids"/>
+                                <button name="action_view_packages" type="object"
+                                        string="View All" class="btn-secondary"
+                                        icon="fa-list"
+                                        invisible="not package_ids"/>
+                                <button name="action_clear_barcodes" type="object"
+                                        string="Clear" class="btn-warning ms-2"
+                                        icon="fa-trash"
+                                        invisible="not package_ids"
+                                        confirm="Are you sure you want to delete all barcodes?"/>
+                            </div>
+                            <field name="package_ids" invisible="1"/>
+                            <field name="gab" invisible="1"/>
+                            <field name="ms_destinataire"/>
+                        </group>
+                        <!-- Reference for non-Barid companies -->
+                        <group string="Reference" invisible="is_barid">
+                            <field name="has_multiple_packages" invisible="1"/>
+                            <!-- Single package: show single reference field -->
+                            <field name="reference" invisible="has_multiple_packages"/>
+                            <!-- Multiple packages: show range fields -->
+                            <div invisible="not has_multiple_packages" class="d-flex align-items-center">
+                                <label for="reference_from" string="From"/>
+                                <field name="reference_from" class="mx-2" style="max-width: 120px;"/>
+                                <span class="mx-1">→</span>
+                                <label for="reference_to" string="To"/>
+                                <field name="reference_to" class="mx-2" style="max-width: 120px;"/>
+                            </div>
+                            <!-- Display computed range -->
+                            <field name="reference_display" invisible="1"/>
+                        </group>
+                        <group string="Dates">
+                            <field name="shipping_date"/>
+                            <field name="delivery_date"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Notes" name="notes">
+                            <field name="notes" placeholder="Add notes..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Shipment Tree View -->
+    <record id="view_delivery_shipment_tree" model="ir.ui.view">
+        <field name="name">delivery.shipment.tree</field>
+        <field name="model">delivery.shipment</field>
+        <field name="arch" type="xml">
+            <list string="Shipments" decoration-info="state == 'draft'"
+                  decoration-warning="state == 'in_transit'"
+                  decoration-success="state == 'delivered'"
+                  decoration-danger="state in ('returned', 'cancelled')">
+                <field name="name"/>
+                <field name="picking_id"/>
+                <field name="partner_id"/>
+                <field name="delivery_company_id"/>
+                <field name="is_barid" column_invisible="1"/>
+                <field name="gab_range" string="GAB" optional="show"/>
+                <field name="reference_display" string="Reference" optional="show"/>
+                <field name="nbr_colis"/>
+                <field name="shipping_payment_method"/>
+                <field name="shipping_date"/>
+                <field name="state" widget="badge"
+                       decoration-info="state == 'draft'"
+                       decoration-primary="state == 'confirmed'"
+                       decoration-warning="state == 'in_transit'"
+                       decoration-success="state == 'delivered'"
+                       decoration-danger="state in ('returned', 'cancelled')"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Shipment Search View -->
+    <record id="view_delivery_shipment_search" model="ir.ui.view">
+        <field name="name">delivery.shipment.search</field>
+        <field name="model">delivery.shipment</field>
+        <field name="arch" type="xml">
+            <search string="Search Shipments">
+                <field name="name"/>
+                <field name="picking_id"/>
+                <field name="partner_id"/>
+                <field name="gab"/>
+                <field name="delivery_company_id"/>
+                <separator/>
+                <filter name="filter_draft" string="Draft" domain="[('state', '=', 'draft')]"/>
+                <filter name="filter_confirmed" string="Confirmed" domain="[('state', '=', 'confirmed')]"/>
+                <filter name="filter_in_transit" string="In Transit" domain="[('state', '=', 'in_transit')]"/>
+                <filter name="filter_delivered" string="Delivered" domain="[('state', '=', 'delivered')]"/>
+                <filter name="filter_returned" string="Returned" domain="[('state', '=', 'returned')]"/>
+                <separator/>
+                <filter name="filter_today" string="Today" 
+                        domain="[('shipping_date', '=', context_today().strftime('%Y-%m-%d'))]"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
+                    <filter name="group_company" string="Delivery Company" context="{'group_by': 'delivery_company_id'}"/>
+                    <filter name="group_partner" string="Customer" context="{'group_by': 'partner_id'}"/>
+                    <filter name="group_date" string="Shipping Date" context="{'group_by': 'shipping_date'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Shipment Action -->
+    <record id="action_delivery_shipment" model="ir.actions.act_window">
+        <field name="name">Shipments</field>
+        <field name="res_model">delivery.shipment</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_delivery_shipment_search"/>
+        <field name="context">{'search_default_filter_today': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No shipments found
+            </p>
+            <p>
+                Create shipments from delivery orders using the "Create Shipment" button.
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem id="menu_delivery_shipment_root"
+              name="Shipments"
+              parent="stock.menu_stock_root"
+              sequence="5"/>
+    
+    <menuitem id="menu_delivery_shipment"
+              name="All Shipments"
+              parent="menu_delivery_shipment_root"
+              action="action_delivery_shipment"
+              sequence="10"/>
+
+    <!-- Stock Picking Form - Add Shipment Buttons -->
+    <record id="view_stock_picking_form_shipment" model="ir.ui.view">
+        <field name="name">stock.picking.form.inherit.shipment</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <!-- Button to view existing shipment -->
+                <button name="action_open_shipment" type="object"
+                        class="oe_stat_button" icon="fa-barcode"
+                        invisible="not shipment_id">
+                    <span>Shipment</span>
+                </button>
+                <!-- Button to create new shipment -->
+                <button name="action_create_shipment" type="object"
+                        class="oe_stat_button" icon="fa-plus-circle"
+                        invisible="not can_create_shipment">
+                    <span>Create Shipment</span>
+                </button>
+            </xpath>
+            <xpath expr="//field[@name='origin']" position="after">
+                <field name="shipment_id" invisible="1"/>
+                <field name="can_create_shipment" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

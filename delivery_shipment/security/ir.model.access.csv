@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_delivery_shipment,delivery.shipment,model_delivery_shipment,base.group_user,1,1,1,1
+access_delivery_shipment_package,delivery.shipment.package,model_delivery_shipment_package,base.group_user,1,1,1,1
+access_delivery_shipment_export_wizard,delivery.shipment.export.wizard,model_delivery_shipment_export_wizard,base.group_user,1,1,1,1

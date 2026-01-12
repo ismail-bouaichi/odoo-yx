@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Shipment Reference Sequence -->
+    <record id="seq_delivery_shipment" model="ir.sequence">
+        <field name="name">Delivery Shipment</field>
+        <field name="code">delivery.shipment</field>
+        <field name="prefix">SHIP/</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <!-- GAB Barcode Sequence -->
+    <record id="seq_delivery_shipment_barcode" model="ir.sequence">
+        <field name="name">Shipment Barcode (GAB)</field>
+        <field name="code">delivery.shipment.barcode</field>
+        <field name="padding">9</field>
+        <field name="number_next">1</field>
+        <field name="number_increment">1</field>
+        <field name="company_id" eval="False"/>
+    </record>
+</odoo>

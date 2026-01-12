@@ -11,13 +11,6 @@
                        readonly="picking_type_code != 'outgoing'"
                        options="{'no_create': True, 'no_open': True}"
                        invisible="picking_type_code == 'incoming'"/>
-                <field name="nbr_colis" invisible="picking_type_code == 'incoming' or not delivery_company_id"
-                       string="Packages"/>
-                <field name="shipping_payment_method"
-                       readonly="picking_type_code != 'outgoing'" 
-                       invisible="picking_type_code == 'incoming' or not delivery_company_id"/>
-                <field name="transport_nature" readonly="1"
-                       invisible="picking_type_code == 'incoming' or not delivery_company_id"/>
             </xpath>
         </field>
     </record>

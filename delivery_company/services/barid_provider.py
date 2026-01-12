@@ -81,7 +81,7 @@ class BaridProvider(BaseDeliveryProvider):
         """
         # Check if we have a valid cached token
         if not force_refresh and self.company.ecom_token and self.company.ecom_token_expiry:
-            # Use Odoo's datetime comparison
+             
             now = odoo_fields.Datetime.now()
             if now < self.company.ecom_token_expiry:
                 return {
@@ -141,7 +141,7 @@ class BaridProvider(BaseDeliveryProvider):
                 'success': False,
                 'error': str(e)
             }
-    
+    # Test connection with The Barid API 
     def test_connection(self):
         """
         Test connection to Barid APIs.
