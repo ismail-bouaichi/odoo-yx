@@ -46,6 +46,9 @@
                             <field name="nbr_colis"/>
                             <field name="shipping_payment_method"/>
                             <field name="transport_nature"/>
+                            <field name="vd"/>
+                            <field name="crbt_espece" invisible="shipping_payment_method != 'cash'"/>
+                            <field name="crbt_cheque" invisible="shipping_payment_method != 'cheque'"/>
                         </group>
                     </group>
                     <group>
@@ -102,6 +105,22 @@
                     <notebook>
                         <page string="Notes" name="notes">
                             <field name="notes" placeholder="Add notes..."/>
+                        </page>
+                        <page string="Package Details" name="package_details" invisible="not is_barid">
+                            <group>
+                                <group string="Dimensions">
+                                    <field name="weight"/>
+                                    <field name="dimension_length"/>
+                                    <field name="dimension_width"/>
+                                    <field name="dimension_height"/>
+                                </group>
+                                <group string="Other Info">
+                                    <field name="pod"/>
+                                    <field name="is_fragile"/>
+                                    <field name="code_point_relais"/>
+                                    <field name="supplier_code"/>
+                                </group>
+                            </group>
                         </page>
                     </notebook>
                 </sheet>

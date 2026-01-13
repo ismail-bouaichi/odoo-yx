@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="paperformat_shipment_label" model="report.paperformat">
+            <field name="name">Shipment Label Format</field>
+            <field name="format">custom</field>
+            <field name="page_width">210</field>
+            <field name="page_height">297</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">5</field>
+            <field name="margin_bottom">5</field>
+            <field name="margin_left">5</field>
+            <field name="margin_right">5</field>
+            <field name="header_spacing">0</field>
+            <field name="dpi">96</field>
+        </record>
+
+        <record id="action_report_shipment_label_amana" model="ir.actions.report">
+            <field name="name">Etiquette Amana</field>
+            <field name="model">delivery.shipment</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">delivery_shipment.report_shipment_label_amana</field>
+            <field name="report_file">delivery_shipment.report_shipment_label_amana</field>
+            <field name="binding_model_id" ref="model_delivery_shipment"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="delivery_shipment.paperformat_shipment_label"/>
+        </record>
+
+        <template id="report_shipment_label_amana">
+            <t t-call="web.basic_layout">
+                <t t-foreach="docs" t-as="shipment">
+                    <t t-foreach="shipment.package_ids" t-as="package">
+                        <div class="page text-dark" style="font-family: Arial, Helvetica, sans-serif; font-size: 14px;">
+                            
+                            <style>
+                                /* Global Border Utilities */
+                                .border-thick { border: 4px solid black !important; }
+                                .border-bottom-thick { border-bottom: 4px solid black !important; }
+                                .border-right-thick { border-right: 4px solid black !important; }
+                                
+                                /* Typography */
+                                .company-title { font-size: 24px; font-weight: bold; text-transform: uppercase; margin-top: 5px; }
+                                .header-title { font-size: 34px; font-weight: bold; text-align: center; line-height: 1.2; }
+                                .bold-val { font-weight: bold; }
+                                
+                                /* Image Utilities */
+                                .logo-left { max-height: 65px; max-width: 100%; }
+                                .logo-right { max-height: 65px; max-width: 100%; float: right; } /* Float right forces it to the edge */
+                            </style>
+
+                            <div class="container-fluid border-thick p-0">
+                                
+                                <div class="row m-0 border-bottom-thick align-items-center" style="height: 100px;">
+                                    
+                                    <div class="col-3 pl-3 text-left">
+                                        <img src="/delivery_shipment/static/src/img/Barid.png" class="logo-left" alt="Barid"/>
+                                    </div>
+                                    
+                                    <div class="col-6 text-center">
+                                        <span class="header-title">Amana Express</span>
+                                    </div>
+                                    
+                                    <div class="col-3 pr-1 text-right">
+                                        <img src="/delivery_shipment/static/src/img/Amana.png" class="logo-right" alt="Amana"/>
+                                    </div>
+                                </div>
+
+                                <div class="row m-0 border-bottom-thick p-3">
+                                    <div class="col-12">
+                                        <div style="font-size: 16px;">N° du colis pour le suivi :</div>
+                                        <div class="text-center mt-2">
+                                            <t t-if="package.gab">
+                                                <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', package.gab, 450, 70)" style="width:350px; height:60px;" alt="Barcode"/>
+                                                <div class="h5 font-weight-bold mt-1" t-esc="package.gab"/>
+                                            </t>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row m-0 border-bottom-thick">
+                                    <div class="col-5 border-right-thick p-3">
+                                        <div class="mb-2">
+                                            Tél Expéditeur : <span class="text-primary font-weight-bold" t-esc="shipment.picking_id.company_id.phone or ''"/>
+                                        </div>
+                                        <div class="company-title" t-esc="shipment.picking_id.company_id.name or ''"/>
+                                    </div>
+                                    
+                                    <div class="col-7 p-3">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span>Poids: <span class="bold-val"><t t-esc="shipment.weight or 0"/> Kg</span></span>
+                                            <span>VD: <span class="bold-val"><t t-esc="shipment.vd or 0"/></span></span>
+                                        </div>
+                                        <div class="mb-1">
+                                            POD : <span class="bold-val"><t t-esc="shipment.pod or ''"/></span>
+                                        </div>
+                                        <div class="mb-1">
+                                            CRBT Espèces : <span class="bold-val"><t t-esc="shipment.crbt_espece or 0"/></span>
+                                        </div>
+                                        <div>
+                                            CRBT Chèque : <span class="bold-val"><t t-esc="shipment.crbt_cheque or ''"/></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row m-0 border-bottom-thick p-3">
+                                    <div class="col-12">
+                                        <div class="h5 font-weight-bold mb-3">
+                                            Destinataire : <span t-esc="shipment.partner_id.name or ''"/>
+                                        </div>
+                                        
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span>CP Destination : <span class="bold-val"><t t-esc="shipment.partner_id.zip or ''"/></span></span>
+                                            <span>CP Ville : <span class="bold-val"><t t-esc="shipment.partner_id.zip or ''"/></span></span>
+                                        </div>
+
+                                        <div class="mb-1">
+                                            Adresse : <span class="bold-val"><t t-esc="shipment.partner_id.street or ''"/></span> 
+                                            <span class="bold-val" t-if="shipment.partner_id.street2"> <t t-esc="shipment.partner_id.street2"/></span>
+                                        </div>
+
+                                        <div class="mb-1">
+                                            Ville : <span class="bold-val"><t t-esc="shipment.partner_id.city or ''"/></span> 
+                                            Pays : <span class="bold-val"><t t-esc="shipment.partner_id.country_id.name or ''"/></span>
+                                        </div>
+
+                                        <div class="d-flex justify-content-between">
+                                            <span>Tél destinataire: <span class="bold-val"><t t-esc="shipment.ms_destinataire or ''"/></span></span>
+                                            <span>Code Point Relais : <span class="bold-val"><t t-esc="shipment.code_point_relais or ''"/></span></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row m-0 p-3">
+                                    <div class="col-12">
+                                        <div class="h5 font-weight-bold mb-3">
+                                            SENS : <span t-if="shipment.is_fragile">1_POUR_OUI</span><span t-else="">0_POUR_NON</span>
+                                        </div>
+
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <span>Dimensions : &#160;&#160; Longueur : <span class="bold-val"><t t-esc="shipment.dimension_length or 0"/> cm</span></span>
+                                            <span>largeur : <span class="bold-val"><t t-esc="shipment.dimension_width or 0"/> cm</span></span>
+                                        </div>
+                                        
+                                        <div class="text-center mb-4">
+                                            Hauteur : <span class="bold-val"><t t-esc="shipment.dimension_height or 0"/> cm</span>
+                                        </div>
+
+                                        <div class="d-flex justify-content-between mb-4">
+                                            <span>Code Fournisseur : <span class="bold-val"><t t-esc="shipment.supplier_code or ''"/></span></span>
+                                            <span>N° BL : <span class="bold-val"><t t-esc="shipment.picking_id.name or ''"/></span></span>
+                                        </div>
+
+                                        <div class="text-center">
+                                            <t t-if="package.gab">
+                                                <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', package.gab, 450, 60)" style="width:300px; height:50px;" alt="CAB1"/>
+                                                <div class="h5 font-weight-bold mt-1" t-esc="package.gab"/>
+                                            </t>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

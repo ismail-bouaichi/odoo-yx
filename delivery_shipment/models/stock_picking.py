@@ -60,20 +60,8 @@ class StockPicking(models.Model):
     def action_create_shipment(self):
         """Create a shipment from the delivery order (button action)."""
         self.ensure_one()
-        if self.shipment_id:
-            return self.action_open_shipment()
-        
-        shipment = self._create_shipment()
-        
-        # Open the created shipment
-        return {
-            'type': 'ir.actions.act_window',
-            'name': _('Shipment'),
-            'res_model': 'delivery.shipment',
-            'res_id': shipment.id,
-            'view_mode': 'form',
-            'target': 'current',
-        }
+        if not self.shipment_id:
+            self._create_shipment()
 
     def action_open_shipment(self):
         """Open the related shipment."""

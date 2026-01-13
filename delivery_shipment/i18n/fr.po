@@ -755,3 +755,123 @@ msgstr "Peut créer une expédition"
 #: model_terms:ir.actions.act_window,help:delivery_shipment.action_delivery_shipment
 msgid "Create shipments from delivery orders using the \"Create Shipment\" button."
 msgstr "Créez des expéditions à partir des bons de livraison en utilisant le bouton \"Créer une expédition\"."
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__vd
+msgid "VD"
+msgstr "VD"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,help:delivery_shipment.field_delivery_shipment__vd
+msgid "Declared value if package contains fragile or valuable items"
+msgstr "Valeur déclarée si le colis contient des articles fragiles ou de valeur"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__crbt_espece
+msgid "CRBT Espèce"
+msgstr "CRBT Espèce"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,help:delivery_shipment.field_delivery_shipment__crbt_espece
+msgid "Cash amount to collect on delivery"
+msgstr "Montant en espèces à collecter à la livraison"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__crbt_cheque
+msgid "CRBT Chèque"
+msgstr "CRBT Chèque"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,help:delivery_shipment.field_delivery_shipment__crbt_cheque
+msgid "Cheque number for payment on delivery"
+msgstr "Numéro de chèque pour paiement à la livraison"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,help:delivery_shipment.field_delivery_shipment__ms_destinataire
+msgid "Customer phone number"
+msgstr "Numéro de téléphone du client"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__weight
+msgid "Weight (Kg)"
+msgstr "Poids (Kg)"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,help:delivery_shipment.field_delivery_shipment__weight
+msgid "Package weight in kilograms"
+msgstr "Poids du colis en kilogrammes"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__pod
+msgid "POD"
+msgstr "POD"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,help:delivery_shipment.field_delivery_shipment__pod
+msgid "Product description"
+msgstr "Description du produit"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__is_fragile
+msgid "Fragile"
+msgstr "Fragile"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,help:delivery_shipment.field_delivery_shipment__is_fragile
+msgid "Check if package contains fragile items"
+msgstr "Cocher si le colis contient des articles fragiles"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__dimension_length
+msgid "Length (cm)"
+msgstr "Longueur (cm)"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__dimension_width
+msgid "Width (cm)"
+msgstr "Largeur (cm)"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__dimension_height
+msgid "Height (cm)"
+msgstr "Hauteur (cm)"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__code_point_relais
+msgid "Code Point Relais"
+msgstr "Code Point Relais"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,help:delivery_shipment.field_delivery_shipment__code_point_relais
+msgid "Relay point code for pickup"
+msgstr "Code du point relais pour le retrait"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,field_description:delivery_shipment.field_delivery_shipment__supplier_code
+msgid "Supplier Code"
+msgstr "Code Fournisseur"
+
+#. module: delivery_shipment
+#: model:ir.model.fields,help:delivery_shipment.field_delivery_shipment__supplier_code
+msgid "Supplier/Sender code"
+msgstr "Code du fournisseur/expéditeur"
+
+#. module: delivery_shipment
+#: model_terms:ir.ui.view,arch_db:delivery_shipment.view_delivery_shipment_form
+msgid "Package Details"
+msgstr "Détails du colis"
+
+#. module: delivery_shipment
+#: model_terms:ir.ui.view,arch_db:delivery_shipment.view_delivery_shipment_form
+msgid "Dimensions"
+msgstr "Dimensions"
+
+#. module: delivery_shipment
+#: model_terms:ir.ui.view,arch_db:delivery_shipment.view_delivery_shipment_form
+msgid "Other Info"
+msgstr "Autres informations"
+
+#. module: delivery_shipment
+#: model:ir.actions.report,name:delivery_shipment.action_report_shipment_label
+msgid "Shipment Label"
+msgstr "Étiquette d'expédition"

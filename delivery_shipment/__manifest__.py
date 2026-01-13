@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Delivery Shipment',
-    'version': '1.2',
+    'version': '1.3',
     'summary': 'Shipment Management with Barcode Generation',
     'description': """
         Manage shipments for delivery orders.
@@ -11,6 +11,7 @@
         - Track shipment status
         - Change delivery company if needed
         - Export to Excel for Barid (Amana)
+        - Print shipment labels (Amana format)
     """,
     'category': 'Operations/Inventory',
     'author': 'Odoo Developer',
@@ -21,6 +22,8 @@
         'views/delivery_shipment_package_views.xml',
         'views/delivery_shipment_views.xml',
         'wizard/export_wizard_views.xml',
+        'report/shipment_label_amana_report.xml',
+        'report/shipment_label_generic_report.xml',
     ],
     'installable': True,
     'application': False,

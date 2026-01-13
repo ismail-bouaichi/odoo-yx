@@ -67,8 +67,8 @@ class DeliveryShipmentExportWizard(models.TransientModel):
         ws = wb.active
         ws.title = "Barid Export"
         
-        # Headers - matching Amana format: GAB, ETOILE, CAB1
-        headers = ['GAB', 'ETOILE', 'CAB1', 'Nom', 'Prénom', 'Code Postal', 'Ville', 'Adresse', 'MS Destinataire']
+        # Headers - matching Amana format
+        headers = ['GAB', 'ETOILE', 'CAB1', 'Nom', 'Prénom', 'Code Postal', 'Ville', 'Adresse', 'MS Destinataire', 'VD', 'CRBT Espèce', 'CRBT Chèque']
         
         # Style for headers
         header_font = Font(bold=True, size=11)
@@ -104,6 +104,9 @@ class DeliveryShipmentExportWizard(models.TransientModel):
         ws.column_dimensions['G'].width = 20  # Ville
         ws.column_dimensions['H'].width = 40  # Adresse
         ws.column_dimensions['I'].width = 20  # MS Destinataire
+        ws.column_dimensions['J'].width = 12  # VD
+        ws.column_dimensions['K'].width = 15  # CRBT Espèce
+        ws.column_dimensions['L'].width = 15  # CRBT Chèque
         
         # Write data - one row per package (not per shipment)
         row_idx = 2
@@ -172,6 +175,21 @@ class DeliveryShipmentExportWizard(models.TransientModel):
                 ms_cell = ws.cell(row=row_idx, column=9, value=shipment.ms_destinataire or '')
                 ms_cell.border = thin_border
                 ms_cell.alignment = cell_alignment
+                
+                # VD (Valeur Déclarée)
+                vd_cell = ws.cell(row=row_idx, column=10, value=shipment.vd or '')
+                vd_cell.border = thin_border
+                vd_cell.alignment = cell_alignment
+                
+                # CRBT Espèce
+                crbt_espece_cell = ws.cell(row=row_idx, column=11, value=shipment.crbt_espece or '')
+                crbt_espece_cell.border = thin_border
+                crbt_espece_cell.alignment = cell_alignment
+                
+                # CRBT Chèque
+                crbt_cheque_cell = ws.cell(row=row_idx, column=12, value=shipment.crbt_cheque or '')
+                crbt_cheque_cell.border = thin_border
+                crbt_cheque_cell.alignment = cell_alignment
                 
                 row_idx += 1
         

@@ -128,9 +128,71 @@ class DeliveryShipment(models.Model):
     
     ms_destinataire = fields.Char(
         string='MS Destinataire',
-        help="Recipient barcode",
+        compute='_compute_ms_destinataire',
+        store=True,
+        readonly=False,
+        help="Customer phone number",
+    )
+    
+    # VD - Valeur Déclarée (declared value for fragile/valuable items)
+    vd = fields.Float(
+        string='VD',
+        help="Declared value if package contains fragile or valuable items",
         tracking=True,
-        copy=False,
+    )
+    
+    # CRBT fields (Cash/Cheque on delivery)
+    crbt_espece = fields.Float(
+        string='CRBT Espèce',
+        help="Cash amount to collect on delivery",
+        tracking=True,
+    )
+    
+    crbt_cheque = fields.Char(
+        string='CRBT Chèque',
+        help="Cheque number for payment on delivery",
+        tracking=True,
+    )
+    
+    # Label fields for Amana template
+    weight = fields.Float(
+        string='Weight (Kg)',
+        help="Package weight in kilograms",
+    )
+    
+    pod = fields.Char(
+        string='POD',
+        help="Product description",
+    )
+    
+    is_fragile = fields.Boolean(
+        string='Fragile',
+        help="Check if package contains fragile items",
+    )
+    
+    dimension_length = fields.Float(
+        string='Length (cm)',
+        help="Package length in centimeters",
+    )
+    
+    dimension_width = fields.Float(
+        string='Width (cm)',
+        help="Package width in centimeters",
+    )
+    
+    dimension_height = fields.Float(
+        string='Height (cm)',
+        help="Package height in centimeters",
+    )
+    
+    code_point_relais = fields.Char(
+        string='Code Point Relais',
+        help="Relay point code for pickup",
+    )
+    
+    supplier_code = fields.Char(
+        string='Supplier Code',
+        help="Supplier/Sender code",
     )
     
     # Package barcodes (for multiple packages)
@@ -240,6 +302,16 @@ class DeliveryShipment(models.Model):
                 shipment.cab1 = f'*{shipment.gab}*'
             else:
                 shipment.cab1 = False
+
+    @api.depends('partner_id', 'partner_id.mobile', 'partner_id.phone')
+    def _compute_ms_destinataire(self):
+        for shipment in self:
+            partner = shipment.partner_id
+            if partner:
+                # Prefer mobile, fallback to phone
+                shipment.ms_destinataire = partner.mobile or partner.phone or ''
+            else:
+                shipment.ms_destinataire = ''
 
     @api.model_create_multi
     def create(self, vals_list):
