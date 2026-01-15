@@ -31,6 +31,21 @@ class DeliveryShipmentPackage(models.Model):
         required=True,
     )
     
+    cab1 = fields.Char(
+        string='CAB1',
+        compute='_compute_cab1',
+        store=True,
+        help="Code 39 barcode format: *GAB*",
+    )
+    
+    @api.depends('gab')
+    def _compute_cab1(self):
+        for package in self:
+            if package.gab:
+                package.cab1 = f"*{package.gab}*"
+            else:
+                package.cab1 = False
+
     @api.depends('shipment_id.name', 'sequence')
     def _compute_name(self):
         for package in self:
