@@ -70,9 +70,10 @@ class DeliveryShipment(models.Model):
     
     reference_to = fields.Char(
         string='Reference To',
-        help="Ending reference number for multiple packages",
-        tracking=True,
-        copy=False,
+        help="Ending reference number (auto-calculated from Reference From + Nombre de Colis)",
+        compute='_compute_reference_to',
+        store=True,
+        readonly=False,
     )
     
     reference_display = fields.Char(
@@ -267,6 +268,21 @@ class DeliveryShipment(models.Model):
         for shipment in self:
             shipment.has_multiple_packages = shipment.nbr_colis > 1
 
+    @api.depends('reference_from', 'nbr_colis')
+    def _compute_reference_to(self):
+        """Auto-calculate reference_to from reference_from + nbr_colis"""
+        for shipment in self:
+            if shipment.reference_from and shipment.nbr_colis > 0:
+                try:
+                    ref_start = int(shipment.reference_from)
+                    ref_end = ref_start + shipment.nbr_colis
+                    shipment.reference_to = str(ref_end)
+                except (ValueError, TypeError):
+                    # If reference_from is not a number, keep it as is
+                    shipment.reference_to = shipment.reference_from
+            else:
+                shipment.reference_to = shipment.reference_from or False
+
     @api.depends('reference', 'reference_from', 'reference_to', 'nbr_colis')
     def _compute_reference_display(self):
         for shipment in self:
@@ -279,6 +295,25 @@ class DeliveryShipment(models.Model):
                     shipment.reference_display = False
             else:
                 shipment.reference_display = shipment.reference or False
+
+    def get_reference_list(self):
+        """Generate list of reference numbers for label printing."""
+        self.ensure_one()
+        refs = []
+        try:
+            ref_from = int(self.reference_from or 0)
+            ref_to = int(self.reference_to or ref_from)
+            for num in range(ref_from, ref_to + 1):
+                refs.append(str(num))
+        except (ValueError, TypeError):
+            # If conversion fails, return reference_from or name
+            if self.reference_from:
+                refs.append(self.reference_from)
+            elif self.reference:
+                refs.append(self.reference)
+            else:
+                refs.append(self.name)
+        return refs
 
     @api.depends('package_ids', 'package_ids.gab')
     def _compute_package_summary(self):
@@ -351,27 +386,47 @@ class DeliveryShipment(models.Model):
         self.write({'state': 'draft'})
 
     def action_generate_barcode(self):
-        """Generate GAB barcode(s) based on number of packages."""
+        """Generate packages based on number of colis.
+        - Barid: Creates packages with GAB barcodes
+        - Non-Barid: Creates packages with reference numbers
+        """
         for shipment in self:
             if shipment.package_ids:
-                raise UserError(_("Barcodes already exist. Clear them first to generate new ones."))
+                raise UserError(_("Packages already exist. Clear them first to generate new ones."))
             
             nbr = shipment.nbr_colis or 1
             packages = []
             
-            for i in range(nbr):
-                sequence = self.env['ir.sequence'].next_by_code('delivery.shipment.barcode') or '000000001'
-                gab = f'LI{sequence}MA'
-                packages.append((0, 0, {
-                    'gab': gab,
-                    'sequence': i + 1,
-                }))
-            
-            shipment.write({'package_ids': packages})
-            
-            # Set main GAB to first package GAB for backward compatibility
-            if shipment.package_ids:
-                shipment.gab = shipment.package_ids[0].gab
+            if shipment.is_barid:
+                # Barid: Generate GAB barcodes
+                for i in range(nbr):
+                    sequence = self.env['ir.sequence'].next_by_code('delivery.shipment.barcode') or '000000001'
+                    gab = f'LI{sequence}MA'
+                    packages.append((0, 0, {
+                        'gab': gab,
+                        'sequence': i + 1,
+                    }))
+                
+                shipment.write({'package_ids': packages})
+                
+                # Set main GAB to first package GAB for backward compatibility
+                if shipment.package_ids:
+                    shipment.gab = shipment.package_ids[0].gab
+            else:
+                # Non-Barid: Use reference range
+                try:
+                    ref_start = int(shipment.reference_from or 0)
+                except (ValueError, TypeError):
+                    ref_start = 0
+                
+                for i in range(nbr):
+                    ref_num = str(ref_start + i) if ref_start else f"REF-{i + 1}"
+                    packages.append((0, 0, {
+                        'reference': ref_num,
+                        'sequence': i + 1,
+                    }))
+                
+                shipment.write({'package_ids': packages})
 
     def action_clear_barcodes(self):
         """Clear all package barcodes."""

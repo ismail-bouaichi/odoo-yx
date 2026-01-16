@@ -28,7 +28,11 @@ class DeliveryShipmentPackage(models.Model):
     gab = fields.Char(
         string='GAB',
         help="Barcode number (e.g., LI000006399MA)",
-        required=True,
+    )
+    
+    reference = fields.Char(
+        string='Reference',
+        help="Reference number for non-Barid carriers",
     )
     
     cab1 = fields.Char(
@@ -36,6 +40,12 @@ class DeliveryShipmentPackage(models.Model):
         compute='_compute_cab1',
         store=True,
         help="Code 39 barcode format: *GAB*",
+    )
+    
+    vd = fields.Float(
+        string='VD',
+        digits=(12, 2),
+        help="Valeur Déclarée for this package",
     )
     
     @api.depends('gab')
@@ -46,10 +56,12 @@ class DeliveryShipmentPackage(models.Model):
             else:
                 package.cab1 = False
 
-    @api.depends('shipment_id.name', 'sequence')
+    @api.depends('shipment_id.name', 'sequence', 'gab', 'reference')
     def _compute_name(self):
         for package in self:
-            if package.shipment_id and package.gab:
+            if package.gab:
                 package.name = package.gab
+            elif package.reference:
+                package.name = package.reference
             else:
                 package.name = f"Package {package.sequence}"

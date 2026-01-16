@@ -88,11 +88,26 @@
                             <field name="reference" invisible="has_multiple_packages"/>
                             <!-- Multiple packages: show range fields -->
                             <div invisible="not has_multiple_packages" class="d-flex align-items-center">
-                                <label for="reference_from" string="From"/>
-                                <field name="reference_from" class="mx-2" style="max-width: 120px;"/>
+                                <label for="reference_from" string="De"/>
+                                <field name="reference_from" class="mx-2" style="width: 90px;"/>
                                 <span class="mx-1">→</span>
-                                <label for="reference_to" string="To"/>
-                                <field name="reference_to" class="mx-2" style="max-width: 120px;"/>
+                                <label for="reference_to" string="À"/>
+                                <field name="reference_to" class="mx-2" style="width: 90px;" readonly="1"/>
+                            </div>
+                            <!-- Action buttons for packages -->
+                            <div class="d-flex align-items-center mt-2" invisible="not has_multiple_packages">
+                                <button name="action_generate_barcode" type="object"
+                                        string="Generate Packages" class="btn-primary"
+                                        invisible="package_ids or not reference_from"/>
+                                <button name="action_view_packages" type="object"
+                                        string="View Packages" class="btn-secondary"
+                                        icon="fa-list"
+                                        invisible="not package_ids"/>
+                                <button name="action_clear_barcodes" type="object"
+                                        string="Clear" class="btn-warning ms-2"
+                                        icon="fa-trash"
+                                        invisible="not package_ids"
+                                        confirm="Are you sure you want to delete all packages?"/>
                             </div>
                             <!-- Display computed range -->
                             <field name="reference_display" invisible="1"/>

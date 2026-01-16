@@ -1,149 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- ========================================================================== -->
-    <!-- GENERIC REPORT (for other delivery companies) -->
-    <!-- ========================================================================== -->
-    <record id="action_report_shipment_label_generic" model="ir.actions.report">
-        <field name="name">Etiquette Standard</field>
-        <field name="model">delivery.shipment</field>
-        <field name="report_type">qweb-pdf</field>
-        <field name="report_name">delivery_shipment.report_shipment_label_generic</field>
-        <field name="binding_model_id" ref="model_delivery_shipment"/>
-        <field name="binding_type">report</field>
-        <field name="paperformat_id" ref="delivery_shipment.paperformat_shipment_label"/>
-    </record>
+    <data>
+        <record id="paperformat_generic_label" model="report.paperformat">
+            <field name="name">Generic Label Format</field>
+            <field name="format">custom</field>
+            <field name="page_width">103</field>
+            <field name="page_height">143</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">0</field>
+            <field name="margin_bottom">0</field>
+            <field name="margin_left">0</field>
+            <field name="margin_right">0</field>
+            <field name="header_spacing">0</field>
+            <field name="dpi">96</field>
+            <field name="disable_shrinking" eval="True"/>
+        </record>
 
-    <template id="report_shipment_label_generic">
-        <t t-call="web.external_layout">
-            <t t-foreach="docs" t-as="shipment">
-                <!-- For Barid companies, iterate over packages -->
-                <t t-if="shipment.is_barid">
+        <record id="action_report_shipment_label_generic" model="ir.actions.report">
+            <field name="name">Etiquette Standard</field>
+            <field name="model">delivery.shipment</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">delivery_shipment.report_shipment_label_generic</field>
+            <field name="report_file">delivery_shipment.report_shipment_label_generic</field>
+            <field name="binding_model_id" ref="model_delivery_shipment"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="delivery_shipment.paperformat_generic_label"/>
+        </record>
+
+        <template id="report_shipment_label_generic">
+            <t t-call="web.basic_layout">
+                <style>
+                    
+                    body, html {
+                        font-family: Arial, sans-serif;
+                        color: #000;
+                        margin: 0;
+                        padding: 0;
+                        width: 100%;
+                        height: 100%;
+                    }
+                    .page {
+                        width: 103mm;
+                        height: 143mm;
+                        box-sizing: border-box;
+                        page-break-after: always;
+                        position: relative;
+                         margin: 0 auto; 
+                        overflow: hidden;
+                    }
+                    .page:last-child { page-break-after: auto; }
+                    
+                    
+                    .center-table {
+                        width: 100%;
+                        height: 100%;
+                        border-collapse: collapse;
+                        border: none;
+                    }
+                    .center-cell {
+                        vertical-align: middle; 
+                        text-align: center;     
+                        padding: 5mm;
+                    }
+
+                    /* Typography */
+                    .mb-8 { margin-bottom: 15px; }
+                    .mb-12 { margin-bottom: 25px; }
+                    .underline { text-decoration: underline; }
+                    
+                    .title { 
+                        font-size: 45px; 
+                        font-weight: 900;
+                    }
+                    .text-client {
+                        font-size: 32px;  
+                        font-weight: bold;
+                        text-transform: uppercase;
+                    }
+                    .text-normal {
+                        font-size: 28px;  
+                        font-weight: bold;
+                    }
+                </style>
+
+                <t t-foreach="docs" t-as="shipment">
                     <t t-foreach="shipment.package_ids" t-as="package">
-                        <t t-set="tracking_number" t-value="package.gab or ''"/>
-                        <t t-call="delivery_shipment.report_shipment_label_generic_document"/>
-                        <p style="page-break-after: always;"/>
+                        <div class="page">
+                            <table class="center-table table-borderless">
+                                <tr>
+                                    <td class="center-cell">
+                                        
+                                        <div class="mb-12 underline title">
+                                            N°: <t t-esc="package.reference or package.gab or shipment.name"/>
+                                        </div>
+                                        
+                                        <div class="mb-8 text-client">
+                                            <t t-esc="(shipment.partner_id.name or '').split(' ')[0]"/>
+                                        </div>
+                                        
+                                        <div class="mb-8 text-normal">
+                                            <t t-esc="' '.join((shipment.partner_id.name or '').split(' ')[1:])"/>
+                                        </div>
+                                        
+                                        <div class="mb-8 text-normal">
+                                            <t t-esc="shipment.partner_id.city or ''"/>
+                                        </div>
+                                        
+                                        <div class="mb-8 text-normal">
+                                            <t t-esc="shipment.partner_id.street or ''"/>
+                                            <t t-if="shipment.partner_id.street2">
+                                                <br/><t t-esc="shipment.partner_id.street2"/>
+                                            </t>
+                                        </div>
+                                        
+                                        <div class="mb-8 text-normal">
+                                            <t t-esc="shipment.delivery_company_id.name or ''"/>
+                                        </div>
+                                        
+                                        <div t-if="shipment.ms_destinataire" class="mb-8 text-normal">
+                                            <t t-esc="shipment.ms_destinataire"/>
+                                        </div>
+                                        
+                                        <div t-if="package.vd" class="mb-8 text-normal">
+                                            VD: <t t-esc="package.vd"/>
+                                        </div>
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
                     </t>
                 </t>
-                <!-- For other companies, use reference -->
-                <t t-else="">
-                    <t t-set="tracking_number" t-value="shipment.reference or shipment.name or ''"/>
-                    <t t-call="delivery_shipment.report_shipment_label_generic_document"/>
-                </t>
             </t>
-        </t>
-    </template>
-
-    <template id="report_shipment_label_generic_document">
-        <div class="page" style="font-family: Arial, sans-serif; font-size: 11px;">
-            
-            <!-- Main Container Table -->
-            <table style="width: 100%; border-collapse: collapse; border: 2px solid #000;">
-                <!-- Header Row -->
-                <tr style="border-bottom: 2px solid #000; background-color: #f0f0f0;">
-                    <td colspan="2" style="padding: 12px; text-align: center;">
-                        <span style="font-size: 20px; font-weight: bold;">
-                            <t t-esc="shipment.delivery_company_id.name or ''"/>
-                        </span>
-                    </td>
-                </tr>
-                
-                <!-- Tracking Number Row -->
-                <tr>
-                    <td colspan="2" style="padding: 10px; border-bottom: 1px solid #000;">
-                        <strong>Reference :</strong>
-                        <span style="font-size: 16px; font-weight: bold; margin-left: 15px;">
-                            <t t-esc="tracking_number"/>
-                        </span>
-                    </td>
-                </tr>
-                
-                <!-- Sender Info Row -->
-                <tr>
-                    <td style="width: 50%; padding: 10px; border-bottom: 1px solid #000; border-right: 1px solid #000; vertical-align: top;">
-                        <div style="font-weight: bold; margin-bottom: 8px; border-bottom: 1px solid #ccc; padding-bottom: 5px;">EXPEDITEUR</div>
-                        <div style="font-size: 14px; font-weight: bold; margin-bottom: 5px;">
-                            <t t-esc="shipment.picking_id.company_id.name or ''"/>
-                        </div>
-                        <t t-if="shipment.picking_id.company_id.phone">
-                            <div>Tel: <t t-esc="shipment.picking_id.company_id.phone"/></div>
-                        </t>
-                    </td>
-                    <td style="width: 50%; padding: 10px; border-bottom: 1px solid #000; vertical-align: top;">
-                        <div style="font-weight: bold; margin-bottom: 8px; border-bottom: 1px solid #ccc; padding-bottom: 5px;">DETAILS</div>
-                        <table style="width: 100%; font-size: 10px;">
-                            <tr>
-                                <td>Poids:</td>
-                                <td style="text-align: right;"><strong><t t-esc="shipment.weight or 0"/> Kg</strong></td>
-                            </tr>
-                            <tr>
-                                <td>VD:</td>
-                                <td style="text-align: right;"><strong><t t-esc="shipment.vd or 0"/></strong></td>
-                            </tr>
-                            <tr>
-                                <td>COD:</td>
-                                <td style="text-align: right;"><strong><t t-esc="shipment.crbt_espece or 0"/></strong></td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-                
-                <!-- Recipient Info Row -->
-                <tr>
-                    <td colspan="2" style="padding: 10px; border-bottom: 1px solid #000;">
-                        <div style="font-weight: bold; margin-bottom: 8px; border-bottom: 1px solid #ccc; padding-bottom: 5px;">DESTINATAIRE</div>
-                        <div style="font-size: 14px; font-weight: bold; margin-bottom: 5px;">
-                            <t t-esc="shipment.partner_id.name or ''"/>
-                        </div>
-                        <div style="margin-bottom: 3px;">
-                            <t t-esc="shipment.partner_id.street or ''"/>
-                            <t t-if="shipment.partner_id.street2">, <t t-esc="shipment.partner_id.street2"/></t>
-                        </div>
-                        <div style="margin-bottom: 3px;">
-                            <t t-esc="shipment.partner_id.zip or ''"/> <t t-esc="shipment.partner_id.city or ''"/>
-                        </div>
-                        <t t-if="shipment.partner_id.country_id">
-                            <div><t t-esc="shipment.partner_id.country_id.name or ''"/></div>
-                        </t>
-                        <div style="margin-top: 5px; font-weight: bold;">
-                            Tel: <t t-esc="shipment.ms_destinataire or ''"/>
-                        </div>
-                    </td>
-                </tr>
-                
-                <!-- Additional Info Row -->
-                <tr>
-                    <td colspan="2" style="padding: 10px; border-bottom: 1px solid #000;">
-                        <table style="width: 100%; font-size: 10px;">
-                            <tr>
-                                <td>N BL:</td>
-                                <td><strong><t t-esc="shipment.picking_id.name or ''"/></strong></td>
-                                <td style="text-align: right;">Date:</td>
-                                <td style="text-align: right;">
-                                    <strong>
-                                        <t t-if="shipment.create_date">
-                                            <t t-esc="shipment.create_date" t-options="{'widget': 'date'}"/>
-                                        </t>
-                                    </strong>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-                
-                <!-- Barcode Row -->
-                <tr>
-                    <td colspan="2" style="padding: 20px; text-align: center;">
-                        <t t-if="tracking_number">
-                            <img t-att-src="'/report/barcode/?barcode_type=Code128&amp;value=%s&amp;width=300&amp;height=50' % tracking_number" 
-                                 style="width: 280px; height: 50px;"/>
-                            <div style="font-size: 14px; margin-top: 10px; font-weight: bold;">
-                                <t t-esc="tracking_number"/>
-                            </div>
-                        </t>
-                    </td>
-                </tr>
-            </table>
-
-        </div>
-    </template>
+        </template>
+    </data>
 </odoo>

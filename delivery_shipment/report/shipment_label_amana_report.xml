@@ -131,7 +131,7 @@
                                     <td style="width: 55%; padding: 5px; font-size: 9px;">
                                         <div style="width: 100%; overflow: hidden;">
                                             <span>Poids: <span class="font-bold"><t t-esc="shipment.weight or 0"/> Kg</span></span>
-                                            <span style="float: right;">VD: <span class="font-bold"><t t-esc="shipment.vd or 0"/></span></span>
+                                            <span style="float: right;">VD: <span class="font-bold"><t t-esc="package.vd or 0"/></span></span>
                                         </div>
                                         <div>POD : <span class="font-bold"><t t-esc="shipment.pod or ''"/></span></div>
                                         <div>CRBT Espèces : <span class="font-bold"><t t-esc="shipment.crbt_espece or 0"/></span></div>
