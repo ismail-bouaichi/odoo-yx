@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Sequence for Pre-Sale -->
+        <record id="seq_property_presale" model="ir.sequence">
+            <field name="name">Property Pre-Sale</field>
+            <field name="code">property.presale</field>
+            <field name="prefix">PRE/%(y)s/</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- Tree -->
+        <record id="view_property_presale_tree" model="ir.ui.view">
+            <field name="name">property.presale.tree</field>
+            <field name="model">property.presale</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="name"/>
+                    <field name="property_id"/>
+                    <field name="partner_id"/>
+                    <field name="date_start"/>
+                    <field name="date_expiry"/>
+                    <field name="amount"/>
+                    <field name="state"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Form -->
+        <record id="view_property_presale_form" model="ir.ui.view">
+            <field name="name">property.presale.form</field>
+            <field name="model">property.presale</field>
+            <field name="arch" type="xml">
+                <form string="Pre-Sale">
+                    <header>
+                        <!-- remplacer states=... par invisible=... -->
+                        <button name="action_activate" type="object" string="Activate"
+                                invisible="state != 'draft'"/>
+                        <button name="action_convert_to_booking" type="object" string="Convert to Booking"
+                                class="btn-primary"
+                                invisible="state != 'active'"/>
+                        <button name="action_mark_expired" type="object" string="Mark Expired"
+                                invisible="state not in ['draft','active']"/>
+                        <button name="action_cancel" type="object" string="Cancel" class="btn-secondary"
+                                invisible="state not in ['draft','active']"/>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="draft,active,expired,converted,cancelled" nolabel="1"/>
+                    </header>
+                    <sheet>
+                        <h1><field name="name"/></h1>
+                        <group>
+                            <group>
+                                <field name="property_id"/>
+                                <field name="partner_id"/>
+                                <field name="amount"/>
+                            </group>
+                            <group>
+                                <field name="date_start"/>
+                                <field name="validity_days"/>
+                                <field name="date_expiry" readonly="1"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="note"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action (optionnelle à mettre au menu si besoin) -->
+        <record id="action_property_presale" model="ir.actions.act_window">
+            <field name="name">Pre-Sales</field>
+            <field name="res_model">property.presale</field>
+            <field name="view_mode">list,form</field>
+            <field name="context">{'search_default_property_id': active_id}</field>
+            <field name="domain">[('property_id', '=', active_id)]</field>
+        </record>
+
+        <!-- Inherit: bouton + smart button dans la fiche Bien -->
+        <record id="property_details_form_view_inherit_presale" model="ir.ui.view">
+            <field name="name">property.details.form.presale.inherit</field>
+            <field name="model">property.details</field>
+            <field name="inherit_id" ref="rental_management.property_details_form_view"/>
+            <field name="arch" type="xml">
+                <!-- Bouton "Pré-vente" dans le header -->
+                <xpath expr="//header" position="inside">
+                    <button name="action_property_presale_wizard" type="object"
+                            string="Pré-vente" class="btn"
+                            invisible="(stage not in ['available','sale','pre_sale']) or (presale_id)"/>
+                </xpath>
+
+                <!-- Smart button compteur -->
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button class="oe_stat_button" type="action" name="%(action_property_presale)d" icon="fa-hourglass">
+                        <field name="presale_count" widget="statinfo" string="Pre-Sales"/>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

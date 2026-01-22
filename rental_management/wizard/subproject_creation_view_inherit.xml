@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 
+        Inherit subproject creation wizard to rename terminology:
+        - "Sub Project" → "Bloc"
+        - "Units per Floor" → "Appartements par étage"
+    -->
+    
+    <!-- Inherit the wizard form view -->
+    <record id="create_sub_project_wizard_view_form_inherit" model="ir.ui.view">
+        <field name="name">create.sub.project.wizard.view.form.inherit</field>
+        <field name="model">subproject.creation</field>
+        <field name="inherit_id" ref="rental_management.create_sub_project_wizard_view_form"/>
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            
+            <!-- Change the form title -->
+            <xpath expr="//form" position="attributes">
+                <attribute name="string">Créer un Bloc</attribute>
+            </xpath>
+            
+            <!-- Change "Unit Details" group title to "Détails Appartements" -->
+            <xpath expr="//group[@name='unit_details']" position="attributes">
+                <attribute name="string">Détails Appartements</attribute>
+            </xpath>
+            
+            <!-- Change units_per_floor label -->
+            <xpath expr="//field[@name='units_per_floor']" position="attributes">
+                <attribute name="string">Appartements par étage</attribute>
+            </xpath>
+            
+            <!-- Change the create button text -->
+            <xpath expr="//footer/button[@name='create_sub_project']" position="attributes">
+                <attribute name="string">Ajouter le Bloc</attribute>
+            </xpath>
+            
+            <!-- Change discard button to French -->
+            <xpath expr="//footer/button[@special='cancel']" position="attributes">
+                <attribute name="string">Annuler</attribute>
+            </xpath>
+            
+            <!-- Change Floor Details group title -->
+            <xpath expr="//group[@name='floor_details']" position="attributes">
+                <attribute name="string">Détails des Étages</attribute>
+            </xpath>
+            
+        </field>
+    </record>
+    
+    <!-- Override the action window name -->
+    <record id="action_create_sub_project" model="ir.actions.act_window">
+        <field name="name">Créer un Bloc</field>
+    </record>
+    
+</odoo>

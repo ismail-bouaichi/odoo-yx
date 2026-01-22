@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <record id="view_property_presale_wizard_form" model="ir.ui.view">
+      <field name="name">property.presale.wizard.form</field>
+      <field name="model">property.presale.wizard</field>
+      <field name="arch" type="xml">
+        <form string="Create Pre-Sale">
+          <group>
+            <group>
+              <field name="property_id"/>
+              <field name="partner_id"/>
+            </group>
+            <group>
+              <field name="validity_days"/>
+              <field name="amount"/>
+            </group>
+          </group>
+          <group>
+            <field name="note" colspan="4"/>
+          </group>
+          <footer>
+            <button name="action_create_presale" type="object" string="Create" class="btn-primary"/>
+            <button string="Cancel" class="btn-secondary" special="cancel"/>
+          </footer>
+        </form>
+      </field>
+    </record>
+
+    <record id="action_property_presale_wizard" model="ir.actions.act_window">
+      <field name="name">Create Pre-Sale</field>
+      <field name="res_model">property.presale.wizard</field>
+      <field name="view_mode">form</field>
+      <field name="target">new</field>
+    </record>
+
+  </data>
+</odoo>

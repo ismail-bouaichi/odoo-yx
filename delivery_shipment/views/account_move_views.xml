@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Account Move (Invoice) Form - Add Shipment -->
+    <record id="view_account_move_form_shipment" model="ir.ui.view">
+        <field name="name">account.move.form.inherit.shipment</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <!-- Add smart button -->
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <!-- Button to view existing shipment -->
+                <button name="action_open_shipment" type="object"
+                        class="oe_stat_button" icon="fa-truck"
+                        invisible="not shipment_id">
+                    <span class="o_stat_text">Expédition</span>
+                </button>
+            </xpath>
+            
+            <!-- Add delivery company field and create button after invoice lines -->
+            <xpath expr="//field[@name='invoice_line_ids']" position="after">
+                <group string="Expédition" invisible="move_type not in ('out_invoice', 'out_refund')">
+                    <group>
+                        <field name="delivery_company_id" options="{'no_create': True}"/>
+                        <field name="shipment_id" readonly="1" invisible="not shipment_id"/>
+                    </group>
+                    <group>
+                        <button name="action_create_shipment" type="object"
+                                string="Créer Expédition" class="btn-primary"
+                                invisible="shipment_id or not delivery_company_id"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="property_project_view_form_inherit_custom" model="ir.ui.view">
+        <field name="name">property.project.view.form.inherit.custom</field>
+        <field name="model">property.project</field>
+        <field name="inherit_id" ref="rental_management.property_project_view_form"/>
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            
+            <xpath expr="//span/field[@name='is_sub_project']" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </xpath>
+            <xpath expr="//span/label[@for='is_sub_project']" position="attributes">
+                <attribute name="invisible">0</attribute>
+                <attribute name="string">Est un Bloc</attribute>
+            </xpath>
+            
+            <xpath expr="//button[@name='%(rental_management.action_create_sub_project)d']" position="attributes">
+                <attribute name="invisible">0</attribute>
+                <attribute name="string">Ajouter un Bloc</attribute>
+            </xpath>
+            
+            <xpath expr="//button[@name='action_sub_project_count']" position="attributes">
+                <attribute name="invisible">0</attribute>
+                <attribute name="string">Blocs</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='landlord_id']" position="attributes">
+                <attribute name="required">1</attribute>
+                <attribute name="invisible">0</attribute>
+            </xpath>
+
+            <!-- Add label for new property type: Residential and Commercial -->
+            <xpath expr="//group[@name='project_details']//div[@invisible='not property_type']" position="before">
+                <label for="property_subtype_id" string="Type Résidentiel &amp; Commercial"
+                       invisible="property_type != 'residential_commercial'"/>
+            </xpath>
+
+            <xpath expr="//field[@name='total_subproject']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            
+        </field>
+    </record>
+</odoo>
