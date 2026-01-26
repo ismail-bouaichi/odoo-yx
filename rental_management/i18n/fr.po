@@ -2301,7 +2301,7 @@ msgstr "Types de zones"
 #: model:ir.model.fields.selection,name:rental_management.selection__property_details__maintenance_type__area_wise
 #: model:ir.model.fields.selection,name:rental_management.selection__property_details__pricing_type__area_wise
 msgid "Area Wise"
-msgstr "Superficie mètre carré (m²)"
+msgstr "Par Surface (m²)"
 
 #. module: rental_management
 #: model_terms:ir.ui.view,arch_db:rental_management.property_project_view_form
@@ -3922,7 +3922,7 @@ msgstr "Réparer"
 #: model:ir.model.fields.selection,name:rental_management.selection__property_details__maintenance_type__fixed
 #: model:ir.model.fields.selection,name:rental_management.selection__property_details__pricing_type__fixed
 msgid "Fixed"
-msgstr "Fixée"
+msgstr "Forfait"
 
 #. module: rental_management
 #: model:ir.model.fields,field_description:rental_management.field_property_details__room_no
@@ -3933,12 +3933,12 @@ msgstr "N° d'appartement/n° de maison"
 #: model:ir.model.fields,field_description:rental_management.field_property_details__floor
 #: model_terms:ir.ui.view,arch_db:rental_management.property_details_qweb_report_template
 msgid "Floor"
-msgstr "Sol"
+msgstr "Étage"
 
 #. module: rental_management
 #: model:ir.model.fields,field_description:rental_management.field_property_details__floor_commercial
 msgid "Floor Commercial"
-msgstr "Sol"
+msgstr "Étage commercial"
 
 #. module: rental_management
 #: model:ir.model.fields,field_description:rental_management.field_property_project__floor_created

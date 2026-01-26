@@ -20,11 +20,11 @@
                                 class="btn-info"
                                 invisible="stage not in ['draft']"/>
                         <button name="action_in_sale" type="object" string="Sale" class="btn-info"
-                                invisible="stage != 'available' or sale_lease != 'for_sale'"/>
+                                invisible="1"/>
                         <button name="%(maintenance_wizard_action)d" type='action'
                                 context="{'is_property_maintenance': True}"
                                 string="Maintenance Request" class="btn btn-warning"
-                                invisible="stage == 'draft'"/>
+                                invisible="1"/>
                         <button name="action_draft_property" type="object" string="Draft"
                                 class="btn btn-primary" invisible="stage not in ['available','sale']"/>
                     </header>
@@ -41,7 +41,7 @@
                                     invisible="not longitude and not latitude">
                             </button>
                             <button class="oe_stat_button" type="object"
-                                    name="action_maintenance_request" icon="fa-wrench">
+                                    name="action_maintenance_request" icon="fa-wrench" invisible="1">
                                 <field name="request_count" string='Maintenances' widget="statinfo"/>
                             </button>
 <!--                            <button class="oe_stat_button" type="object" name="action_crm_lead"-->

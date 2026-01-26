@@ -10,7 +10,7 @@ import psycopg2
 
 # Database connection settings - UPDATE THESE
 DB_CONFIG = {
-    'dbname': 'relife',           # Your database name
+    'dbname': 'Relife',           # Your database name
     'user': 'openpg',               # PostgreSQL username
     'password': 'openpgpwd',       # PostgreSQL password
     'host': 'localhost',          # Database host
