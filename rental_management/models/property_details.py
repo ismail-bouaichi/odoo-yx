@@ -253,6 +253,17 @@ class PropertyDetails(models.Model):
                               string='Facing', default='N')
     furnishing_id = fields.Many2one('property.furnishing', string="Furnishing")
     unit_type = fields.Integer(string="Unit Type", default=1)
+    
+    # Unit Morphology / Type d'unité
+    unit_morphology = fields.Selection([
+        ('studio', 'Studio / F1'),
+        ('f2', 'F2'),
+        ('f3', 'F3'),
+        ('f4', 'F4'),
+        ('duplex', 'Duplex'),
+        ('villa', 'Villa'),
+        ('shop', 'Magasin / Commercial'),
+    ], string="Type d'unité")
 
     # Smart Button Count
     document_count = fields.Integer(string='Document Count',

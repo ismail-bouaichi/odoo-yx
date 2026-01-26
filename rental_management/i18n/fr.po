@@ -2301,7 +2301,7 @@ msgstr "Types de zones"
 #: model:ir.model.fields.selection,name:rental_management.selection__property_details__maintenance_type__area_wise
 #: model:ir.model.fields.selection,name:rental_management.selection__property_details__pricing_type__area_wise
 msgid "Area Wise"
-msgstr "Zone sage"
+msgstr "Superficie mètre carré (m²)"
 
 #. module: rental_management
 #: model_terms:ir.ui.view,arch_db:rental_management.property_project_view_form
@@ -7549,12 +7549,12 @@ msgstr "Nombre total d'étages"
 #. module: rental_management
 #: model:ir.model.fields,field_description:rental_management.field_property_details__sq_ft
 msgid "Total Ft²"
-msgstr "Pi² total"
+msgstr "Total Ft²"
 
 #. module: rental_management
 #: model:ir.model.fields,field_description:rental_management.field_property_details__cu_ft
 msgid "Total Ft³"
-msgstr "Total en pieds³"
+msgstr "Total Ft³"
 
 #. module: rental_management
 #: model:ir.model.fields,field_description:rental_management.field_property_details__total_industrial_measure
@@ -8072,12 +8072,12 @@ msgstr "par exemple. Hauteur Argent"
 #: model:ir.model.fields,field_description:rental_management.field_property_room_measurement__measure
 #: model:ir.model.fields.selection,name:rental_management.selection__property_details__measure_unit__sq_ft
 msgid "ft²"
-msgstr "pi²"
+msgstr "ft²"
 
 #. module: rental_management
 #: model:ir.model.fields.selection,name:rental_management.selection__property_details__measure_unit__cu_ft
 msgid "ft³"
-msgstr "pi³"
+msgstr "ft³"
 
 #. module: rental_management
 #: model:ir.model.fields,field_description:rental_management.field_property_project__project_image_ids

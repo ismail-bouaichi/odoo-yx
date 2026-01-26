@@ -24,17 +24,17 @@ class PropertyProjectSaleOnly(models.Model):
         required=True
     )
 
-    # Add new property type: Residential and Commercial
+    # Property type: Only Residential, Commercial, and Mixed
+    # Hidden: Land and Industrial
     property_type = fields.Selection(
         selection=[
             ("residential", "Résidentiel"),
             ("commercial", "Commercial"),
-            ("industrial", "Industriel"),
-            ("land", "Terrain"),
             ("residential_commercial", "Résidentiel et Commercial"),
         ],
         string="Type de Bien",
-        required=True
+        required=True,
+        default='residential'
     )
 
 
@@ -64,20 +64,20 @@ class PropertyDetailsSaleOnly(models.Model):
     _inherit = "property.details"
 
     # Override sale_lease to only have Sale option
+    # IMPORTANT: Must use 'for_sale' to match original field values and view conditions
     sale_lease = fields.Selection(
-        selection=[("sale", "Vente")],
+        selection=[("for_sale", "Vente")],
         string='Bien Pour',
-        default='sale',
+        default='for_sale',
         required=True
     )
 
-    # Add new property type: Residential and Commercial
+    # Property type: Only Residential, Commercial, and Mixed
+    # Hidden: Land and Industrial
     type = fields.Selection(
         selection=[
-            ('land', 'Terrain'),
             ('residential', 'Résidentiel'),
             ('commercial', 'Commercial'),
-            ('industrial', 'Industriel'),
             ('residential_commercial', 'Résidentiel et Commercial'),
         ],
         string='Type de Bien',
@@ -90,13 +90,12 @@ class PropertySubTypeSaleOnly(models.Model):
     """Override property.sub.type to add new property type option"""
     _inherit = "property.sub.type"
 
-    # Add new property type: Residential and Commercial
+    # Property type: Only Residential, Commercial, and Mixed
+    # Hidden: Land and Industrial
     type = fields.Selection(
         selection=[
-            ('land', 'Terrain'),
             ('residential', 'Résidentiel'),
             ('commercial', 'Commercial'),
-            ('industrial', 'Industriel'),
             ('residential_commercial', 'Résidentiel et Commercial'),
         ],
         string='Type'

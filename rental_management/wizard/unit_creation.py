@@ -17,6 +17,20 @@ class UnitCreation(models.TransientModel):
     property_code_prefix = fields.Char(string="Prefix",
                                        help="Prefix for Property Code")
     floor_start_from = fields.Integer(string="Floor Start From")
+    
+    # New fields for setting price and area on created units
+    unit_price = fields.Float(string="Unit Price", 
+                              help="Sale price for each created unit")
+    unit_area = fields.Float(string="Unit Area (m²)", 
+                             help="Total area in square meters for each unit")
+    
+    # Special floor fields - for floors with different unit counts
+    has_special_floor = fields.Boolean(string="Exceptions par étage?",
+                                        help="Check if one floor has a different number of units")
+    special_floor_number = fields.Integer(string="Numéro de l'étage spécial",
+                                           help="The floor number that has a different unit count")
+    special_floor_units = fields.Integer(string="Nombre d'unités sur cet étage",
+                                          help="Number of units on the special floor")
 
     @api.model
     def default_get(self, fields_list):
@@ -95,11 +109,20 @@ class UnitCreation(models.TransientModel):
             'website': project_id.website,
             'longitude': project_id.longitude,
             'latitude': project_id.latitude,
+            # New fields: price and area from wizard
+            'price': self.unit_price,
+            'total_area': self.unit_area,
         }
         property_rec.update(property_static_rec)
         property_data = []
         for floor in range(self.floor_start_from, self.total_floors + self.floor_start_from):
-            for unit in range(1, self.units_per_floor + 1):
+            # Determine number of units for this floor
+            if self.has_special_floor and floor == self.special_floor_number:
+                floor_units = self.special_floor_units
+            else:
+                floor_units = self.units_per_floor
+            
+            for unit in range(1, floor_units + 1):
                 code = "%s%s-%s" % (self.property_code_prefix,
                                     str(floor).zfill(2), str(unit).zfill(2))
                 name = "%s-%s" % (project_id.name,

@@ -194,14 +194,14 @@
                                 <group name="area_of_project" string="Area of Project">
                                     <field name="total_floors" readonly="1" force_save="1"/>
                                     <field name="units_per_floor" readonly="1" force_save="1"/>
-                                    <field name="total_area"/>
-                                    <field name="available_area"/>
+                                    <!-- <field name="total_area"/>
+                                    <field name="available_area"/> -->
                                 </group>
                                 <group name="valuation_of_project" string="Valuation of Project">
                                     <field name="total_values"/>
-                                    <field name="total_maintenance"/>
-                                    <field name="total_collection"/>
-                                    <field name="scope_of_collection"/>
+                                    <!-- <field name="total_maintenance"/> -->
+                                    <!-- <field name="total_collection"/>
+                                    <field name="scope_of_collection"/> -->
                                 </group>
                             </group>
                         </page>

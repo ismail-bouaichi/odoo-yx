@@ -7,6 +7,9 @@
         <field name="priority">99</field>
         <field name="arch" type="xml">
             
+            <!-- ================================================== -->
+            <!-- 1. RENAME "Sub Project" CHECKBOX TO "Est un Bloc" -->
+            <!-- ================================================== -->
             <xpath expr="//span/field[@name='is_sub_project']" position="attributes">
                 <attribute name="invisible">0</attribute>
             </xpath>
@@ -15,31 +18,62 @@
                 <attribute name="string">Est un Bloc</attribute>
             </xpath>
             
+            <!-- ================================================== -->
+            <!-- 2. RENAME WIZARD BUTTON TO "Ajouter un Bloc"      -->
+            <!--    Keep original visibility: hidden when checkbox -->
+            <!--    is_sub_project is unchecked or status != draft -->
+            <!-- ================================================== -->
             <xpath expr="//button[@name='%(rental_management.action_create_sub_project)d']" position="attributes">
-                <attribute name="invisible">0</attribute>
                 <attribute name="string">Ajouter un Bloc</attribute>
             </xpath>
             
+            <!-- ================================================== -->
+            <!-- 3. RENAME SMART BUTTON TO "Blocs"                 -->
+            <!-- ================================================== -->
             <xpath expr="//button[@name='action_sub_project_count']" position="attributes">
                 <attribute name="invisible">0</attribute>
                 <attribute name="string">Blocs</attribute>
             </xpath>
 
+            <!-- ================================================== -->
+            <!-- 4. MAKE landlord_id REQUIRED                      -->
+            <!-- ================================================== -->
             <xpath expr="//field[@name='landlord_id']" position="attributes">
                 <attribute name="required">1</attribute>
                 <attribute name="invisible">0</attribute>
             </xpath>
 
-            <!-- Add label for new property type: Residential and Commercial -->
-            <xpath expr="//group[@name='project_details']//div[@invisible='not property_type']" position="before">
-                <label for="property_subtype_id" string="Type Résidentiel &amp; Commercial"
-                       invisible="property_type != 'residential_commercial'"/>
+            <!-- ================================================== -->
+            <!-- 5. SHOW total_subproject WITH FRENCH LABEL        -->
+            <!-- ================================================== -->
+            <xpath expr="//group[@name='area_of_project']//field[@name='total_subproject']" position="attributes">
+                <attribute name="invisible">0</attribute>
+                <attribute name="string">Nombre Total de Blocs</attribute>
             </xpath>
 
-            <xpath expr="//field[@name='total_subproject']" position="attributes">
+            <!-- ================================================== -->
+            <!-- 6. HIDE AREA FIELDS (Correct names from source)   -->
+            <!-- ================================================== -->
+            <xpath expr="//group[@name='area_of_project']//field[@name='total_area']" position="attributes">
                 <attribute name="invisible">1</attribute>
             </xpath>
-            
+            <xpath expr="//group[@name='area_of_project']//field[@name='available_area']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <!-- ================================================== -->
+            <!-- 7. HIDE VALUATION FIELDS (Correct names)          -->
+            <!-- ================================================== -->
+            <xpath expr="//group[@name='valuation_of_project']//field[@name='total_maintenance']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//group[@name='valuation_of_project']//field[@name='total_collection']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//group[@name='valuation_of_project']//field[@name='scope_of_collection']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
         </field>
     </record>
 </odoo>

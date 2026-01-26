@@ -124,4 +124,89 @@
         <field name="name">Blocs</field>
     </record>
 
+    <!-- ============================================== -->
+    <!-- RENAME "Sub Project" FILTER TO "Bloc"         -->
+    <!-- ============================================== -->
+    
+    <!-- Rename in property.details search view -->
+    <record id="property_details_search_view_rename_bloc" model="ir.ui.view">
+        <field name="name">property.details.search.view.rename.bloc</field>
+        <field name="model">property.details</field>
+        <field name="inherit_id" ref="rental_management.property_details_search_view"/>
+        <field name="priority">100</field>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='group_by_subproject']" position="attributes">
+                <attribute name="string">Bloc</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- ============================================== -->
+    <!-- HIDE "Is section-wise area measurement" FIELD -->
+    <!-- ============================================== -->
+    <record id="property_details_view_form_hide_section_measurement" model="ir.ui.view">
+        <field name="name">property.details.view.form.hide.section.measurement</field>
+        <field name="model">property.details</field>
+        <field name="inherit_id" ref="rental_management.property_details_form_view"/>
+        <field name="priority">100</field>
+        <field name="arch" type="xml">
+            <!-- Hide the entire div containing "Is section-wise detailed area measurement?" -->
+            <xpath expr="//page[@name='area_measurement']/div[@class='row']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <!-- Also hide the room_measurement_ids field that depends on it -->
+            <xpath expr="//field[@name='room_measurement_ids']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <!-- Hide Furnishing field -->
+            <xpath expr="//field[@name='furnishing_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <!-- Hide BHK label and field -->
+            <xpath expr="//label[@for='unit_type']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//div[@name='unit_type']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <!-- Hide Maintenance Details - hide individual fields -->
+            <xpath expr="//field[@name='is_maintenance_service']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='maintenance_rent_type']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='maintenance_type']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//label[@for='per_area_maintenance']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//div[@name='per_area_maintenance']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//page[@name='pricing_details']//field[@name='total_maintenance']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <!-- Hide Utility Services - hide individual fields -->
+            <xpath expr="//field[@name='is_extra_service']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='extra_service_ids']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='extra_service_cost']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <!-- Hide entire Maintenance Details section (using name attribute) -->
+            <xpath expr="//group[@name='maintenance_details_group']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <!-- Hide entire Utility Services section (using name attribute) -->
+            <xpath expr="//group[@name='utility_services_group']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
 </odoo>

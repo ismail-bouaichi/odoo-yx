@@ -22,7 +22,27 @@
                                 <field name="property_code_prefix" required="1" readonly="1"
                                     force_save="1" />
                             </group>
-
+                        </group>
+                        <group string="Unit Details">
+                            <group>
+                                <field name="unit_price" string="Prix de Vente"/>
+                            </group>
+                            <group>
+                                <field name="unit_area" string="Surface (m²)"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="has_special_floor" widget="boolean_toggle"/>
+                            </group>
+                        </group>
+                        <group string="Détails de l'étage spécial" invisible="not has_special_floor">
+                            <group>
+                                <field name="special_floor_number" required="has_special_floor"/>
+                            </group>
+                            <group>
+                                <field name="special_floor_units" required="has_special_floor"/>
+                            </group>
                         </group>
                         <footer>
                             <button string='Create units' name="action_create_property_unit"
