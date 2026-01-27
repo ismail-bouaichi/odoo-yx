@@ -939,7 +939,7 @@ msgid ""
 "                                </strong>"
 msgstr ""
 "<strong>\n"
-"                                    Surface utilisable\n"
+"                                    Superficie terrasse / Jardin / Megannine\n"
 "                                </strong>"
 
 #. module: rental_management
@@ -8206,3 +8206,38 @@ msgstr "Industriel"
 #: model:ir.model.fields.selection,name:rental_management.selection__property_sub_type__type__land
 msgid "Land"
 msgstr "Terrain"
+
+#. module: rental_management
+#: code:addons/rental_management/models/property_presale.py:0
+msgid "Pre-sale expiring tomorrow"
+msgstr "Pré-vente expire demain"
+
+#. module: rental_management
+#: code:addons/rental_management/models/property_presale.py:0
+msgid "The pre-sale '%s' for property '%s' expires tomorrow. Please contact the client %s."
+msgstr "La pré-vente '%s' pour le bien '%s' expire demain. Veuillez contacter le client %s."
+
+#. module: rental_management
+#: code:addons/rental_management/models/property_presale.py:0
+msgid "Pre-sale EXPIRED"
+msgstr "Pré-vente EXPIRÉE"
+
+#. module: rental_management
+#: code:addons/rental_management/models/property_presale.py:0
+msgid "The pre-sale '%s' for property '%s' has EXPIRED on %s. The client %s should be contacted immediately."
+msgstr "La pré-vente '%s' pour le bien '%s' a EXPIRÉ le %s. Le client %s doit être contacté immédiatement."
+
+#. module: rental_management
+#: model:ir.model.fields,field_description:rental_management.field_property_presale__reminder_sent
+msgid "True if reminder was sent before expiry"
+msgstr "Vrai si le rappel a été envoyé avant l'expiration"
+
+#. module: rental_management
+#: model:ir.model.fields,field_description:rental_management.field_property_presale__expiry_notified
+msgid "True if expiry notification was sent"
+msgstr "Vrai si la notification d'expiration a été envoyée"
+
+#. module: rental_management
+#: model:ir.cron,name:rental_management.presale_expiry_check
+msgid "Rental Management: Pre-sale Expiry Check"
+msgstr "Gestion locative : Vérification expiration pré-vente"

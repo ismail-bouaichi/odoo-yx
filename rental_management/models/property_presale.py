@@ -17,7 +17,7 @@ class PropertyPreSale(models.Model):
         domain="[('user_type','=','customer')]"
     )
     date_start = fields.Date(string='Start', default=fields.Date.today, tracking=True)
-    validity_days = fields.Integer(string='Validity (days)', default=7, tracking=True)
+    validity_days = fields.Integer(string='Validity (days)', default=2, tracking=True)
     date_expiry = fields.Date(string='Expires On', compute='_compute_expiry', store=True)
     amount = fields.Monetary(string='Deposit Amount')
     note = fields.Text(string='Notes')
@@ -32,6 +32,61 @@ class PropertyPreSale(models.Model):
     company_id = fields.Many2one('res.company', default=lambda self: self.env.company, string='Company')
     currency_id = fields.Many2one(related='company_id.currency_id', string='Currency', readonly=True)
     is_expired = fields.Boolean(compute='_compute_is_expired', store=True)
+
+    # Notification tracking
+    reminder_sent = fields.Boolean(default=False, copy=False, help="True if reminder was sent before expiry")
+    expiry_notified = fields.Boolean(default=False, copy=False, help="True if expiry notification was sent")
+
+    @api.model
+    def _cron_check_presale_expiry(self):
+        """Scheduler: Check for pre-sales expiring soon or already expired and notify creators."""
+        today = fields.Date.today()
+        tomorrow = today + timedelta(days=1)
+
+        # Activity type for notifications
+        activity_type = self.env.ref('mail.mail_activity_data_todo', raise_if_not_found=False)
+        if not activity_type:
+            return
+
+        # 1. Pre-sales expiring tomorrow (reminder)
+        expiring_soon = self.search([
+            ('state', '=', 'active'),
+            ('date_expiry', '=', tomorrow),
+            ('reminder_sent', '=', False),
+        ])
+        for presale in expiring_soon:
+            user = presale.create_uid or self.env.user
+            presale.activity_schedule(
+                activity_type_id=activity_type.id,
+                summary=_("Pre-sale expiring tomorrow"),
+                note=_("The pre-sale '%s' for property '%s' expires tomorrow. Please contact the client %s.") % (
+                    presale.name, presale.property_id.name, presale.partner_id.name
+                ),
+                user_id=user.id,
+                date_deadline=today,
+            )
+            presale.reminder_sent = True
+
+        # 2. Pre-sales already expired (expiry notification)
+        expired = self.search([
+            ('state', '=', 'active'),
+            ('date_expiry', '<', today),
+            ('expiry_notified', '=', False),
+        ])
+        for presale in expired:
+            user = presale.create_uid or self.env.user
+            presale.activity_schedule(
+                activity_type_id=activity_type.id,
+                summary=_("Pre-sale EXPIRED"),
+                note=_("The pre-sale '%s' for property '%s' has EXPIRED on %s. The client %s should be contacted immediately.") % (
+                    presale.name, presale.property_id.name, presale.date_expiry, presale.partner_id.name
+                ),
+                user_id=user.id,
+                date_deadline=today,
+            )
+            presale.expiry_notified = True
+            # Optionally mark as expired and reset property
+            presale.action_mark_expired()
 
     @api.model_create_multi
     def create(self, vals_list):

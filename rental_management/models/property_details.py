@@ -390,12 +390,13 @@ class PropertyDetails(models.Model):
     # Area Wise Price
     @api.onchange('pricing_type', 'price_per_area', 'measure_unit', 'room_measurement_ids',
                   'is_section_measurement',
-                  'total_area')
+                  'total_area', 'usable_area')
     def _onchange_fix_area_price(self):
         """Onchange fix area price"""
         for rec in self:
             if rec.pricing_type == 'area_wise':
-                rec.price = rec.total_area * rec.price_per_area
+                usable_part = (rec.usable_area / 2) if rec.usable_area > 0 else 0
+                rec.price = (usable_part + rec.total_area) * rec.price_per_area
 
     # Maintenance Area wise Price
     @api.onchange('is_maintenance_service', 'maintenance_type', 'per_area_maintenance')

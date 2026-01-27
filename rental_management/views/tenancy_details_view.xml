@@ -48,7 +48,7 @@
                             context="{'is_renting_contract_maintenance': True}"
                             string="Maintenance Request" class="btn btn-warning"
                             id="contract_maintenance"
-                            invisible="contract_type != 'running_contract'" />
+                            invisible="1" />
                         <button name='action_close_contract'
                             type='object'
                             string="Close Contract"
@@ -102,7 +102,7 @@
                             </button>
                             <button class="oe_stat_button" type="object"
                                 name="action_maintenance_request"
-                                icon="fa-wrench">
+                                icon="fa-wrench" invisible="1">
                                 <field name="maintenance_request_count" string="Maintenances"
                                     widget="statinfo" />
                             </button>

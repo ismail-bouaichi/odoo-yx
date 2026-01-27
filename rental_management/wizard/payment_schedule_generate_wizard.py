@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError
-
+from dateutil.relativedelta import relativedelta
 
 FREQ_SELECTION = [
     ('weekly', 'Weekly'),
@@ -58,15 +58,15 @@ class PaymentScheduleGenerateWizard(models.TransientModel):
         # Acompte (optionnel)
         if self.down_payment:
             Schedule.create({
-                'name': _("Down Payment"),
+                'name': _("Reservation (Paid)"),
                 'partner_id': self.partner_id.id,
                 'property_id': self.property_id.id,
                 'vendor_id': self.vendor_id.id,
                 'company_id': self.company_id.id,
-                'amount': self.down_payment,
+                'amount': abs(self.down_payment),  # Force positive to prevent validation errors
                 'due_date': self.first_due_date if self.generate_mode == 'by_calendar' else False,
-                'state': 'pending',
-                'validation_state': 'to_provide',
+                'state': 'pending',                   # Mark as paid immediately
+                'validation_state': 'to_provide',   # Auto-validate
             })
 
         # Répartition équitable
@@ -77,11 +77,11 @@ class PaymentScheduleGenerateWizard(models.TransientModel):
             if not prev:
                 return False
             if self.frequency == 'weekly':
-                return fields.Date.to_date(prev) + fields.DateUtils.relativedelta(weeks=+1)
+                return fields.Date.to_date(prev) + relativedelta(weeks=1)
             if self.frequency == 'monthly':
-                return fields.Date.to_date(prev) + fields.DateUtils.relativedelta(months=+1)
+                return fields.Date.to_date(prev) + relativedelta(months=1)
             if self.frequency == 'quarterly':
-                return fields.Date.to_date(prev) + fields.DateUtils.relativedelta(months=+3)
+                return fields.Date.to_date(prev) + relativedelta(months=3)
             return prev
 
         current_date = self.first_due_date if self.generate_mode == 'by_calendar' else False

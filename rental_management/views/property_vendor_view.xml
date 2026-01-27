@@ -38,7 +38,7 @@
                                 context="{'is_selling_contract_maintenance': True}"
                                 icon="fa-wrench"
                                 string="Maintenance Request" class="btn btn-warning"
-                                invisible="stage not in ['sold', 'locked']"/>
+                                invisible="1"/>
                         <button name="action_cancel_contract"
                                 type="object"
                                 string="Cancel"
@@ -70,7 +70,7 @@
                     <sheet>
                         <div class="oe_button_box" name="button_box">
                             <button class="oe_stat_button" type="object"
-                                    name="action_maintenance_request" icon="fa-wrench">
+                                    name="action_maintenance_request" icon="fa-wrench" invisible="1">
                                 <field name="maintenance_request_count" string="Maintenances"
                                        widget="statinfo"/>
                             </button>

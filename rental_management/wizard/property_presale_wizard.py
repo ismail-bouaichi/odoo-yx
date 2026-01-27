@@ -11,7 +11,7 @@ class PropertyPreSaleWizard(models.TransientModel):
         'res.partner', string='Customer', required=True,
         domain="[('user_type','=','customer')]"
     )
-    validity_days = fields.Integer(string='Validity (days)', default=7, required=True)
+    validity_days = fields.Integer(string='Validity (days)', default=2, required=True)
     amount = fields.Monetary(string='Deposit Amount')
     note = fields.Text(string='Notes')
     company_id = fields.Many2one('res.company', default=lambda self: self.env.company)

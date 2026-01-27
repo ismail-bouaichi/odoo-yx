@@ -73,5 +73,14 @@
             <field name="interval_type">days</field>
             <field name="active" eval="True"/>
         </record>
+        <record id="presale_expiry_check" model="ir.cron">
+            <field name="name">Rental Management: Pre-sale Expiry Check</field>
+            <field name="model_id" ref="rental_management.model_property_presale"/>
+            <field name="state" eval="'code'"/>
+            <field name="code" eval="'model._cron_check_presale_expiry()'"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="active" eval="True"/>
+        </record>
     </data>
 </odoo>
